@@ -1,0 +1,14 @@
+!*foreground: grey
+!*background: black
+!*backarrowKey: false
+!Emacs.forground: black
+
+*Font: 6x13
+XTerm*foreground: white
+XTerm*background: black
+XTerm*scrollBar: false
+Xterm*saveLines: 10000
+
+Aterm*transparent: true
+Aterm*tinting: Green
+Aterm*foreground: white

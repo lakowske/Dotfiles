@@ -1,0 +1,12 @@
+#!/bin/sh
+
+:0 c
+backup
+
+:0 ic
+| cd backup && rm -f dummy `ls -t msg.* | sed -e 1,32d`
+
+:0:
+* ^TOupl
+upl
+

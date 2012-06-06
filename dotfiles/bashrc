@@ -1,0 +1,8 @@
+
+export HISTFILESIZE=1000
+export PATH=$HOME/bin:$PATH:/usr/sbin:/usr/afsws/bin:/usr/afsws/etc
+#export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/$HOME/lib
+export EDITOR="emacs -nw"
+export PAGER=less
+export CVS_RSH=ssh
+export PS1="\t/\u/\H\w> "
