@@ -8,25 +8,22 @@ echo "creating dotfile symlinks in $HOME"
 
 for DOTFILE in $DOTFILES
 do
-  DEST=$HOME/`echo $DOTFILE | sed -r -e '{s/dotfiles\/(.*)/.\1/}'`
+  DEST=$HOME/$DOTFILE
 
-  if [ $DOTFILE != "dotfiles/CVS" ]; then
+  FILE="$PWD/$DOTFILE"
+  echo $FILE $DEST
 
-      FILE="$PWD/$DOTFILE"
-      echo $FILE $DEST
-
-      if [ -h $DEST ]; then
-	  echo "found a symlink dotfile, removing."
-	  rm $DEST
-      fi
-      
-      if [ -e $DEST ]; then
-	  echo "found a file, moving to old."
-	  mv $DEST $PWD/old
-      fi
-
-      ln -s $FILE $DEST
+  if [ -h $DEST ]; then
+      echo "found a symlink dotfile, removing."
+      rm $DEST
   fi
+      
+  if [ -e $DEST ]; then
+      echo "found a file, moving to old."
+      mv $DEST $PWD/old
+  fi
+
+  ln -s $FILE $DEST
 done
 
 
@@ -34,17 +31,14 @@ echo "creating normal file symlinks in $HOME"
 
 for FILE in $FILES
 do
-  DEST=$HOME/`echo $FILE | sed -r -e '{s/files\/(.*)/\1/}'`
+  DEST=$HOME/$File
 
-  if [ $FILE != "files/CVS" ]; then
+  FILE="$PWD/$FILE"
+  echo $FILE $DEST
 
-      FILE="$PWD/$FILE"
-      echo $FILE $DEST
-
-      if [ -h $DEST ]; then
-	  echo "found a symlink dotfile, removing."
-	  rm $DEST
-      fi
-      ln -s $FILE $DEST
+  if [ -h $DEST ]; then
+      echo "found a symlink dotfile, removing."
+      rm $DEST
   fi
+  ln -s $FILE $DEST
 done
