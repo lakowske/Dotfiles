@@ -6,39 +6,15 @@ FILES=files/*
 
 echo "creating dotfile symlinks in $HOME"
 
-for DOTFILE in $DOTFILES
+TARGETFILE=$1
+
+while IFS= read -r aLine
 do
-  DEST=$HOME/$DOTFILE
+    echo $aLine
+    [[ $aLine =~ (.+)\ (.+) ]]
+    file="${BASH_REMATCH[1]}"
+    target="$HOME/${BASH_REMATCH[2]}"
+    echo "linking $file"
+    ln -s $file $target
+done < $TARGETFILE
 
-  FILE="$PWD/$DOTFILE"
-  echo $FILE $DEST
-
-  if [ -h $DEST ]; then
-      echo "found a symlink dotfile, removing."
-      rm $DEST
-  fi
-      
-  if [ -e $DEST ]; then
-      echo "found a file, moving to old."
-      mv $DEST $PWD/old
-  fi
-
-  ln -s $FILE $DEST
-done
-
-
-echo "creating normal file symlinks in $HOME"
-
-for FILE in $FILES
-do
-  DEST=$HOME/$File
-
-  FILE="$PWD/$FILE"
-  echo $FILE $DEST
-
-  if [ -h $DEST ]; then
-      echo "found a symlink dotfile, removing."
-      rm $DEST
-  fi
-  ln -s $FILE $DEST
-done
