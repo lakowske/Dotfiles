@@ -1,8 +1,8 @@
-Dotfile CVS Readme
+Dotfile Git Readme
 
 1.0 Introduction
 
-This is a CVS controlled directory for dotfiles in my home directory.
+This is a Git controlled directory for dotfiles in my home directory.
 
 1.1 Reasons
 
@@ -15,4 +15,4 @@ directory.
 1.2 Installation:
 
 The installation script is called 'install.py' and must be run so that
-its working directory is the checkout directory.
+its working directory is the checkout directory.  
