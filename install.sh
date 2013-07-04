@@ -12,9 +12,10 @@ TARGETFILE=$1
 
 while IFS= read -r aLine
 do
+    cd $MYDIR
     echo $aLine
     [[ $aLine =~ (.+)\ (.+) ]]
-    file="${BASH_REMATCH[1]}"
+    file="$MYDIR/${BASH_REMATCH[1]}"
     target="$HOME/${BASH_REMATCH[2]}"
     if [ -e "$target" ]
     then

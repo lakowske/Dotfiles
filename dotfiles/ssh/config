@@ -1,0 +1,14 @@
+Host awshost1
+HostName ec2-54-218-48-170.us-west-2.compute.amazonaws.com
+User ubuntu
+IdentityFile ~/.ssh/lakowske-cloud-1.pem
+
+Host hawkone
+HostName 10.0.0.11
+User pi
+IdentityFile ~/.ssh/id_rsa
+
+Host antennaone
+Hostname 192.168.1.25
+User pi
+IdentityFile ~/.ssh/id_rsa
