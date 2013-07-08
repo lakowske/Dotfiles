@@ -1,8 +1,18 @@
-
 export HISTFILESIZE=1000
-export PATH=$HOME/bin:$PATH:/usr/sbin:/usr/afsws/bin:/usr/afsws/etc
+export PATH=$HOME/bin:/usr/bin:$M2:/usr/local/bin:/usr/local/mysql/bin:$PATH:/usr/sbin:/usr/afsws/bin:/usr/afsws/etc
+export PATH=/opt/local/bin:/opt/local/sbin:$DERBY_INSTALL/bin:$HOME/Software/shell-scripts/dvcs:$PATH
+
 #export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/$HOME/lib
+
 export EDITOR="emacs -nw"
 export PAGER=less
 export CVS_RSH=ssh
 export PS1="\t/\u/\H\w> "
+
+export MAVEN3_HOME=/opt/local/share/java/maven3
+export M3=$MAVEN3_HOME/bin
+export JAVA_HOME=/Library/Java/Home
+export MAVEN_OPTS='-Xmx1024m'
+export DERBY_INSTALL=~/Tools/db-derby-10.9.1.0-bin
+export CLASSPATH=$CLASSPATH:~/Library/Java/bsh.jar:$DERBY_INSTALL/lib/derby.jar:$DERBY_INSTALL/lib/derbytools.jar
+export ANT_OPTS="-Xmx512m -XX:MaxPermSize=256m"
