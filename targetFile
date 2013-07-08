@@ -1,3 +1,4 @@
 dotfiles/bashrc .bashrc
+dotfiles/color .color
 dotfiles/emacs .emacs
 dotfiles/ssh/config .ssh/config
