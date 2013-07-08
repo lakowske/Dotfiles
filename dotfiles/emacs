@@ -17,7 +17,7 @@
 (column-number-mode nil)
 
 ;; Get rid of the GUI-type stuff
-(scroll-bar-mode -1)
+;;(scroll-bar-mode -1)
 (menu-bar-mode -1)
 (cond 
  ((string-match "21." emacs-version)
