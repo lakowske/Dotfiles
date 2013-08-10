@@ -12,6 +12,8 @@ export PAGER=less
 export CVS_RSH=ssh
 export PS1="\t/\u/\H\w> "
 
+export PYTHONPATH=$PYTHONPATH:$HOME/RedHawk
+
 export MAVEN3_HOME=/opt/local/share/java/maven3
 export M3=$MAVEN3_HOME/bin
 export JAVA_HOME=/Library/Java/Home
