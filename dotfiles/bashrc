@@ -17,5 +17,12 @@ export M3=$MAVEN3_HOME/bin
 export JAVA_HOME=/Library/Java/Home
 export MAVEN_OPTS='-Xmx1024m'
 export DERBY_INSTALL=~/Tools/db-derby-10.9.1.0-bin
-export CLASSPATH=$CLASSPATH:~/Library/Java/bsh.jar:$DERBY_INSTALL/lib/derby.jar:$DERBY_INSTALL/lib/derbytools.jar
+export WORKSPACE=$HOME/Software/cerebro2
+export CLASSPATH=$CLASSPATH:~/Library/Java/bsh.jar:$DERBY_INSTALL/lib/derby.jar:$DERBY_INSTALL/lib/derbytools.jar:$WORKSPACE/database/drivers
 export ANT_OPTS="-Xmx512m -XX:MaxPermSize=256m"
+
+alias lqmysql="java -jar ~/Tools/liquibase/liquibase.jar --classpath=$WORKSPACE/database/drivers/mysql-connector-java-5.1.18.jar"
+export LIQUIBASE_HOME=$WORKSPACE/shell-scripts/jenkins/liquibase-wrappers/config
+export GLOBALDBDEV=$LIQUIBASE_HOME/development/global/liquibase.properties
+
+

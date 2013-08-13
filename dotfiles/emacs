@@ -54,3 +54,14 @@
       (cons '("python" . python-mode)
             interpreter-mode-alist))
 (autoload 'python-mode "python-mode" "Python editing mode." t)
+
+(add-to-list 'load-path "~/vacay/lintnode")
+(require 'flymake-jslint)
+;; Make sure we can find the lintnode executable
+(setq lintnode-location "~/vacay/lintnode")
+;; JSLint can be... opinionated
+(setq lintnode-jslint-excludes (list 'nomen 'undef 'plusplus 'onevar 'white))
+;; Start the server when we first open a js file and start checking
+(add-hook 'js-mode-hook
+          (lambda ()
+            (lintnode-hook)))
