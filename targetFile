@@ -1,6 +1,10 @@
 dotfiles/bashrc .bashrc
 dotfiles/color .color
-dotfiles/emacs .emacs
 dotfiles/ssh/config .ssh/config
 dotfiles/screenrc .screenrc
+<<<<<<< HEAD
 dotfiles/Xdefaults .Xdefaults
+=======
+dotfiles/gitignore_global .gitignore_global
+dotfiles/emacs.d .emacs.d
+>>>>>>> 7dc95a564ba030a8c287c2444eb54226707ddf07
