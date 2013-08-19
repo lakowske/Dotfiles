@@ -70,7 +70,7 @@
 ;; ---------------------------
 ;; -- JS Mode configuration --
 ;; ---------------------------
-(load "js-config.el")
+;;(load "js-config.el")
 (add-to-list 'load-path "~/.emacs.d/jade-mode") ;; github.com/brianc/jade-mode
 (require 'sws-mode)
 (require 'jade-mode)    
@@ -138,26 +138,39 @@
             interpreter-mode-alist))
 (autoload 'python-mode "python-mode" "Python editing mode." t)
 
+
 (add-to-list 'load-path "~/.emacs.d/")
 (require 'auto-complete-config)
 (add-to-list 'ac-dictionary-directories "~/.emacs.d//ac-dict")
 (ac-config-default)
 
-(require 'flymake-cursor)
 
-
-(add-to-list 'load-path "~/.emacs.d/plugin/jshint-mode")
-(require 'flymake-jshint)
-(add-hook 'javascript-mode-hook
-     (lambda () (flymake-mode t)))
-(add-hook 'js-mode-hook 
-	  (lambda () (flymake-mode t)))
+;;(add-to-list 'load-path "~/.emacs.d/plugin/jshint-mode")
+;;(require 'flymake-jshint)
+;;(add-hook 'javascript-mode-hook
+;;     (lambda () (flymake-mode t)))
+;;(add-hook 'js-mode-hook 
+;;	  (lambda () (flymake-mode t)))
 (add-to-list 'load-path
               "~/.emacs.d/elpa/yasnippet-0.8.0")
 (require 'yasnippet)
+(add-to-list 'ac-sources 'ac-sources-yasnippet)
 (yas-global-mode 1)
 
 ;; Turns on flymake for all files which have a flymake mode
-(add-hook 'find-file-hook 'flymake-find-file-hook)
+;;(add-hook 'find-file-hook 'flymake-find-file-hook)
 
+
+
+(autoload 'js2-mode "js2" nil t)
+(add-to-list 'auto-mode-alist '("\\.js$" . js2-mode))
+(eval-after-load 'js2-mode
+  '(progn
+     (define-key js2-mode-map (kbd "TAB") (lambda()
+                                            (interactive)
+                                            (let ((yas/fallback-behavior 'return-nil))
+                                              (unless (yas/expand)
+                                                (indent-for-tab-command)
+                                                (if (looking-back "^\s*")
+                                                    (back-to-indentation))))))))
 
