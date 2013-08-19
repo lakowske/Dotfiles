@@ -6,3 +6,6 @@ cd node
 ./configure
 make
 sudo make install
+
+#install grunt
+npm install -g grunt-cli
