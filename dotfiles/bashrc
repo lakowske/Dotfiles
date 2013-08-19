@@ -3,7 +3,7 @@ source $HOME/.color
 
 export HISTFILESIZE=1000
 export PATH=$HOME/bin:/usr/bin:$M2:/usr/local/bin:/usr/local/mysql/bin:$PATH:/usr/sbin:/usr/afsws/bin:/usr/afsws/etc
-export PATH=/opt/local/bin:/opt/local/sbin:$DERBY_INSTALL/bin:$HOME/Software/shell-scripts/dvcs:$PATH
+export PATH=/usr/local/bin:/opt/local/bin:/opt/local/sbin:$DERBY_INSTALL/bin:$HOME/Software/shell-scripts/dvcs:$PATH
 
 #export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/$HOME/lib
 

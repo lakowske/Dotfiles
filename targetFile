@@ -3,3 +3,4 @@ dotfiles/color .color
 dotfiles/emacs .emacs
 dotfiles/ssh/config .ssh/config
 dotfiles/screenrc .screenrc
+dotfiles/Xdefaults .Xdefaults
