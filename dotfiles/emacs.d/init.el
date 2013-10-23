@@ -89,6 +89,8 @@
 (setq make-backup-files nil)
 (setq backup-inhibited t)
 (setq auto-save-default nil)
+(setq tab-width 4) 
+(setq indent-tabs-mode t)
 
 ;; setup home and end to work correctly
 (global-set-key [home] 'beginning-of-buffer)
@@ -114,9 +116,10 @@
   ;; change the nasty default offset
   (c-set-offset 'substatement-open '0)
   ;; other customizations
-  (setq tab-width 3
-        ;; this will make sure spaces are used instead of tabs
-        indent-tabs-mode nil)
+  (setq tab-width 4) 
+  (setq-default indent-tabs-mode true)
+  ;; this will make sure spaces are used instead of tabs
+  
 
   ;; set the default offset to 3
   (setq c-basic-offset 3)
@@ -144,6 +147,18 @@
 (add-to-list 'ac-dictionary-directories "~/.emacs.d//ac-dict")
 (ac-config-default)
 
+(add-to-list 'load-path "~/.emacs.d/plugin/jshint-mode")
+(require 'flymake-jshint)
+
+(require 'whitespace)
+(global-set-key "\C-c_w" 'whitespace-mode)
+
+(add-hook 'javascript-mode-hook
+     (lambda () (flymake-mode t)))
+
+(add-to-list 'load-path "~/emacs/minor-modes")
+;; Nice Flymake minibuffer messages
+(require 'flymake-cursor)
 
 ;;(add-to-list 'load-path "~/.emacs.d/plugin/jshint-mode")
 ;;(require 'flymake-jshint)
@@ -162,15 +177,26 @@
 
 
 
-(autoload 'js2-mode "js2" nil t)
-(add-to-list 'auto-mode-alist '("\\.js$" . js2-mode))
-(eval-after-load 'js2-mode
-  '(progn
-     (define-key js2-mode-map (kbd "TAB") (lambda()
-                                            (interactive)
-                                            (let ((yas/fallback-behavior 'return-nil))
-                                              (unless (yas/expand)
-                                                (indent-for-tab-command)
-                                                (if (looking-back "^\s*")
-                                                    (back-to-indentation))))))))
+;;(autoload 'js2-mode "js2" nil t)
+;;(add-to-list 'auto-mode-alist '("\\.js$" . js2-mode))
 
+(add-to-list 'load-path "~/.emacs.d/js-comint.el")
+(require 'js-comint)
+(setq inferior-js-program-command "node")
+(setq inferior-js-mode-hook
+      (lambda ()
+        ;; We like nice colors
+        (ansi-color-for-comint-mode-on)
+        ;; Deal with some prompt nonsense
+        (add-to-list 'comint-preoutput-filter-functions
+                     (lambda (output)
+                       (replace-regexp-in-string ".*1G\.\.\..*5G" "..."
+                     (replace-regexp-in-string ".*1G.*3G" "&gt;" output))))))
+
+;; (add-hook 'js2-mode-hook '(lambda () 
+;; 			    (local-set-key "\C-x\C-e" 'js-send-last-sexp)
+;; 			    (local-set-key "\C-\M-x" 'js-send-last-sexp-and-go)
+;; 			    (local-set-key "\C-cb" 'js-send-buffer)
+;; 			    (local-set-key "\C-c\C-b" 'js-send-buffer-and-go)
+;; 			    (local-set-key "\C-cl" 'js-load-file-and-go)
+;; 			    ))

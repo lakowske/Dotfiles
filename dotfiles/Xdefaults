@@ -3,12 +3,13 @@
 !*backarrowKey: false
 !Emacs.forground: black
 
-*Font: 6x13
-XTerm*foreground: white
+
+XTerm*foreground: grey
 XTerm*background: black
 XTerm*scrollBar: false
 Xterm*saveLines: 10000
 
-Aterm*transparent: true
-Aterm*tinting: Green
-Aterm*foreground: white
+!aterm*transparent:true
+!aterm*tinting:Green
+aterm*foreground:grey
+aterm*background:black
