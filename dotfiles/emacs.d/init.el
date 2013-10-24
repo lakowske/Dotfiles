@@ -28,6 +28,8 @@
 (setq suggest-key-bindings t)
 (setq vc-follow-symlinks t)
 
+
+
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -90,7 +92,7 @@
 (setq backup-inhibited t)
 (setq auto-save-default nil)
 (setq tab-width 4) 
-(setq indent-tabs-mode t)
+
 
 ;; setup home and end to work correctly
 (global-set-key [home] 'beginning-of-buffer)
@@ -153,19 +155,15 @@
 (require 'whitespace)
 (global-set-key "\C-c_w" 'whitespace-mode)
 
-(add-hook 'javascript-mode-hook
-     (lambda () (flymake-mode t)))
+(add-hook 'js-mode-hook 'whitespace-mode);;
+(add-hook 'js-mode-hook (lambda () (flymake-mode t)))
+(add-hook 'js-mode-hook (lambda () (setq indent-tabs-mode nil)))
+(add-hook 'js-mode-hook (lambda () (global-linum-mode t)))
 
 (add-to-list 'load-path "~/emacs/minor-modes")
 ;; Nice Flymake minibuffer messages
 (require 'flymake-cursor)
 
-;;(add-to-list 'load-path "~/.emacs.d/plugin/jshint-mode")
-;;(require 'flymake-jshint)
-;;(add-hook 'javascript-mode-hook
-;;     (lambda () (flymake-mode t)))
-;;(add-hook 'js-mode-hook 
-;;	  (lambda () (flymake-mode t)))
 (add-to-list 'load-path
               "~/.emacs.d/elpa/yasnippet-0.8.0")
 (require 'yasnippet)
