@@ -149,17 +149,19 @@
 (add-to-list 'ac-dictionary-directories "~/.emacs.d//ac-dict")
 (ac-config-default)
 
-(add-to-list 'load-path "~/.emacs.d/plugin/jshint-mode")
-(require 'flymake-jshint)
+;;(add-to-list 'load-path "~/.emacs.d/plugin/jshint-mode")
+;;(require 'flymake-jshint)
 
 (require 'whitespace)
 (global-set-key "\C-c_w" 'whitespace-mode)
 
-(add-hook 'js-mode-hook 'whitespace-mode);;
+(add-hook 'js-mode-hook 'whitespace-mode)
 (add-hook 'js-mode-hook (lambda () (flymake-mode t)))
 (add-hook 'js-mode-hook (lambda () (setq indent-tabs-mode nil)))
 (add-hook 'js-mode-hook (lambda () (global-linum-mode t)))
 
+(add-hook 'sh-mode-hook 'whitespace-mode)
+(add-hook 'sh-mode-hook (lambda () (global-linum-mode t)))
 (add-to-list 'load-path "~/emacs/minor-modes")
 ;; Nice Flymake minibuffer messages
 (require 'flymake-cursor)
