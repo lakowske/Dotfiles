@@ -4,6 +4,7 @@
 ;; ---------------------
 ;; -- Global Settings --
 ;; ---------------------
+
 (add-to-list 'load-path "~/.emacs.d")
 (require 'cl)
 (require 'ido)
@@ -79,6 +80,8 @@
 (add-to-list 'auto-mode-alist '("\\.styl$" . sws-mode))
 (add-to-list 'auto-mode-alist '("\\.jade$" . jade-mode))
 
+
+
 ;; ----------------------------
 ;; -- Original configuration --
 ;; ----------------------------
@@ -106,10 +109,6 @@
 ;; Get rid of the GUI-type stuff
 ;;(scroll-bar-mode -1)
 (menu-bar-mode -1)
-(cond 
- ((string-match "21." emacs-version)
-  (tool-bar-mode -1)
-  ))
 
 
 ;; Customizations for all of c-mode, c++-mode, and objc-mode
@@ -152,8 +151,11 @@
 ;;(add-to-list 'load-path "~/.emacs.d/plugin/jshint-mode")
 ;;(require 'flymake-jshint)
 
+;; Whitespace configuration
 (require 'whitespace)
 (global-set-key "\C-c_w" 'whitespace-mode)
+(setq whitespace-style '(face empty tabs lines-tail trailing))
+(setq whitespace-line-column 120)
 
 (add-hook 'js-mode-hook 'whitespace-mode)
 (add-hook 'js-mode-hook (lambda () (flymake-mode t)))
