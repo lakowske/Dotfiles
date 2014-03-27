@@ -68,7 +68,7 @@
 (global-set-key "\M-d" 'delete-word)
 (global-set-key "\M-h" 'backward-delete-word)
 (global-set-key "\M-u" 'zap-to-char)
-
+(global-set-key "\C-x\C-d" 'dired)
 
 ;; ---------------------------
 ;; -- JS Mode configuration --
@@ -135,12 +135,12 @@
 (add-hook 'c-mode-common-hook 'seth-c-mode-common-hook)
 
 (setq load-path (cons "~/share/emacs/" load-path))
-(setq auto-mode-alist
-      (cons '("\\.py$" . python-mode) auto-mode-alist))
-(setq interpreter-mode-alist
-      (cons '("python" . python-mode)
-            interpreter-mode-alist))
-(autoload 'python-mode "python-mode" "Python editing mode." t)
+;;(setq auto-mode-alist
+;;      (cons '("\\.py$" . python-mode) auto-mode-alist))
+;;(setq interpreter-mode-alist
+;;      (cons '("python" . python-mode)
+;;            interpreter-mode-alist))
+;;(autoload 'python-mode "python-mode" "Python editing mode." t)
 
 
 (add-to-list 'load-path "~/.emacs.d/")

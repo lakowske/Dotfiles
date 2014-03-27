@@ -8,6 +8,7 @@ HostName ec2-54-213-74-203.us-west-2.compute.amazonaws.com
 User ubuntu
 IdentityFile ~/.ssh/lakowske-cloud-2.pem
 
+
 Host syntropy
 Hostname sethlakowske.com
 User seth
