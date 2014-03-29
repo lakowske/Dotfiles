@@ -93,6 +93,7 @@
 ;; security risk or just clutters up my filesystem.
 (setq make-backup-files nil)
 (setq backup-inhibited t)
+(setq create-lockfiles nil)
 (setq auto-save-default nil)
 (setq tab-width 4) 
 
