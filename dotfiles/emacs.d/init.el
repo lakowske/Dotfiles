@@ -69,6 +69,8 @@
 (global-set-key "\M-h" 'backward-delete-word)
 (global-set-key "\M-u" 'zap-to-char)
 (global-set-key "\C-x\C-d" 'dired)
+(global-set-key (kbd "C-x /") 'comment-or-uncomment-region)
+
 
 ;; ---------------------------
 ;; -- JS Mode configuration --
@@ -169,11 +171,11 @@
 ;; Nice Flymake minibuffer messages
 (require 'flymake-cursor)
 
-(add-to-list 'load-path
-              "~/.emacs.d/elpa/yasnippet-0.8.0")
-(require 'yasnippet)
-(add-to-list 'ac-sources 'ac-sources-yasnippet)
-(yas-global-mode 1)
+;; (add-to-list 'load-path
+;;               "~/.emacs.d/elpa/yasnippet-0.8.0")
+;; (require 'yasnippet)
+;; (add-to-list 'ac-sources 'ac-sources-yasnippet)
+;; (yas-global-mode 1)
 
 ;; Turns on flymake for all files which have a flymake mode
 ;;(add-hook 'find-file-hook 'flymake-find-file-hook)
