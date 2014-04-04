@@ -102,7 +102,7 @@
 (global-set-key [home] 'beginning-of-buffer)
 (global-set-key [end] 'end-of-buffer)
 ;;(global-set-key "\C-h" 'delete-backward-char)
-;(global-set-key "C-#" 'goto-line)
+;;(global-set-key "C-#" 'goto-line)
 
 ;; turn column-number-mode on
 (column-number-mode nil)
@@ -172,8 +172,10 @@
 (add-to-list 'load-path
               "~/.emacs.d/elpa/yasnippet-0.8.0")
 (require 'yasnippet)
-(add-to-list 'ac-sources 'ac-sources-yasnippet)
+;;(add-to-list 'ac-sources 'ac-sources-yasnippet)
 (yas-global-mode 1)
+(setq yas-snippet-dirs 
+      '("~/.emacs.d/snippets"))
 
 ;; Turns on flymake for all files which have a flymake mode
 ;;(add-hook 'find-file-hook 'flymake-find-file-hook)
