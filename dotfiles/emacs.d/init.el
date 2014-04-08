@@ -69,14 +69,19 @@
 (global-set-key "\M-h" 'backward-delete-word)
 (global-set-key "\M-u" 'zap-to-char)
 (global-set-key "\C-x\C-d" 'dired)
+(global-set-key "\C-x\C-r" 'query-replace)
+(global-set-key "\C-x\C-i" 'indent-region)
 (global-set-key (kbd "C-x /") 'comment-or-uncomment-region)
 
+
+(add-to-list 'load-path "~/.emacs.d/")
+(add-to-list 'load-path "~/.emacs.d/jade-mode") ;; github.com/brianc/jade-mode
+(add-to-list 'load-path "~/.emacs.d/elpa/yasnippet-0.8.0")
 
 ;; ---------------------------
 ;; -- JS Mode configuration --
 ;; ---------------------------
 ;;(load "js-config.el")
-(add-to-list 'load-path "~/.emacs.d/jade-mode") ;; github.com/brianc/jade-mode
 (require 'sws-mode)
 (require 'jade-mode)    
 (add-to-list 'auto-mode-alist '("\\.styl$" . sws-mode))
@@ -114,42 +119,26 @@
 (menu-bar-mode -1)
 
 
-;; Customizations for all of c-mode, c++-mode, and objc-mode
-(defun seth-c-mode-common-hook ()
-
-  ;; change the nasty default offset
-  (c-set-offset 'substatement-open '0)
-  ;; other customizations
-  (setq tab-width 4) 
-  (setq-default indent-tabs-mode true)
-  ;; this will make sure spaces are used instead of tabs
-  
-
-  ;; set the default offset to 3
-  (setq c-basic-offset 3)
-  ;; keybindings for all supported languages.  We can put these in
-  ;; c-mode-base-map because c-mode-map, c++-mode-map, objc-mode-map,
-  ;; java-mode-map, and idl-mode-map inherit from it.
-  (define-key c-mode-base-map "\C-m" 'newline-and-indent)
-  
-  )
-
-;; add our function as the c-mode-common-hook
-(add-hook 'c-mode-common-hook 'seth-c-mode-common-hook)
-
-(setq load-path (cons "~/share/emacs/" load-path))
-;;(setq auto-mode-alist
-;;      (cons '("\\.py$" . python-mode) auto-mode-alist))
-;;(setq interpreter-mode-alist
-;;      (cons '("python" . python-mode)
-;;            interpreter-mode-alist))
-;;(autoload 'python-mode "python-mode" "Python editing mode." t)
 
 
-(add-to-list 'load-path "~/.emacs.d/")
+;; Turn on snippets
+(require 'yasnippet)
+(setq yas-snippet-dirs '("~/.emacs.d/snippets"))
+(yas-global-mode t)
+
+(define-key yas-minor-mode-map (kbd "<tab>") nil)
+(define-key yas-minor-mode-map (kbd "TAB") nil)
+(define-key yas-minor-mode-map (kbd "<backtab>") 'yas-expand)
+
 (require 'auto-complete-config)
-(add-to-list 'ac-dictionary-directories "~/.emacs.d//ac-dict")
+(add-to-list 'ac-dictionary-directories "~/.emacs.d/ac-dict")
 (ac-config-default)
+(global-auto-complete-mode t)
+(ac-set-trigger-key "TAB")
+(ac-set-trigger-key "<tab>")
+
+
+
 
 ;;(add-to-list 'load-path "~/.emacs.d/plugin/jshint-mode")
 ;;(require 'flymake-jshint)
@@ -170,14 +159,6 @@
 (add-to-list 'load-path "~/emacs/minor-modes")
 ;; Nice Flymake minibuffer messages
 (require 'flymake-cursor)
-
-(add-to-list 'load-path
-              "~/.emacs.d/elpa/yasnippet-0.8.0")
-(require 'yasnippet)
-(yas-global-mode 1)
-(setq yas-snippet-dirs 
-      '("~/.emacs.d/snippets"))
-
 
 ;; Turns on flymake for all files which have a flymake mode
 ;;(add-hook 'find-file-hook 'flymake-find-file-hook)
@@ -200,10 +181,28 @@
                        (replace-regexp-in-string ".*1G\.\.\..*5G" "..."
                      (replace-regexp-in-string ".*1G.*3G" "&gt;" output))))))
 
-;; (add-hook 'js2-mode-hook '(lambda () 
-;; 			    (local-set-key "\C-x\C-e" 'js-send-last-sexp)
-;; 			    (local-set-key "\C-\M-x" 'js-send-last-sexp-and-go)
-;; 			    (local-set-key "\C-cb" 'js-send-buffer)
-;; 			    (local-set-key "\C-c\C-b" 'js-send-buffer-and-go)
-;; 			    (local-set-key "\C-cl" 'js-load-file-and-go)
-;; 			    ))
+
+
+
+;; Customizations for all of c-mode, c++-mode, and objc-mode
+(defun seth-c-mode-common-hook ()
+
+  ;; change the nasty default offset
+  (c-set-offset 'substatement-open '0)
+  ;; other customizations
+  (setq tab-width 4) 
+  (setq-default indent-tabs-mode true)
+  ;; this will make sure spaces are used instead of tabs
+  
+
+  ;; set the default offset to 3
+  (setq c-basic-offset 3)
+  ;; keybindings for all supported languages.  We can put these in
+  ;; c-mode-base-map because c-mode-map, c++-mode-map, objc-mode-map,
+  ;; java-mode-map, and idl-mode-map inherit from it.
+  (define-key c-mode-base-map "\C-m" 'newline-and-indent)
+  
+  )
+
+;; add our function as the c-mode-common-hook
+(add-hook 'c-mode-common-hook 'seth-c-mode-common-hook)
