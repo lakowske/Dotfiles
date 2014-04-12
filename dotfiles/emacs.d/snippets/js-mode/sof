@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+#name : software (/* ... */)
+# --
+/*
+ * (C) 2014 SoftwareCo-oP
+ */
+$0

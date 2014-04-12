@@ -1,0 +1,16 @@
+# -*- mode: snippet -*-
+#name : mod (/* ... */)
+# --
+define(
+[],
+function() {
+
+    /*
+     * $2
+     */
+    function $1() {
+
+    }
+
+    return $0
+})

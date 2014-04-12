@@ -1,0 +1,19 @@
+# -*- mode: snippet -*-
+#name : test (/* ... */)
+# --
+define(
+['chai', 'sinon'],
+function(chai, sinon) {
+
+    var assert = chai.assert;
+
+    describe('$1', function() {
+
+        it('$2', function(done) {
+            $0
+            done();
+        })
+
+    })
+
+})

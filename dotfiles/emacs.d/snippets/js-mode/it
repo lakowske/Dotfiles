@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+#name : it (/* ... */)
+#expand-env: ((yas-indent-line 'auto))
+# --
+it('$1', function(done) {
+$0
+})
