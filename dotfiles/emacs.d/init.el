@@ -73,6 +73,13 @@
 (global-set-key "\C-x\C-i" 'indent-region)
 (global-set-key (kbd "C-x /") 'comment-or-uncomment-region)
 
+;; setup home and end to work correctly
+(global-set-key [home] 'beginning-of-buffer)
+(global-set-key "\M-p" 'beginning-of-buffer)
+
+(global-set-key [end] 'end-of-buffer)
+(global-set-key "\M-n" 'end-of-buffer)
+
 
 (add-to-list 'load-path "~/.emacs.d/")
 (add-to-list 'load-path "~/.emacs.d/jade-mode") ;; github.com/brianc/jade-mode
@@ -105,9 +112,6 @@
 (setq tab-width 4) 
 
 
-;; setup home and end to work correctly
-(global-set-key [home] 'beginning-of-buffer)
-(global-set-key [end] 'end-of-buffer)
 ;;(global-set-key "\C-h" 'delete-backward-char)
 ;;(global-set-key "C-#" 'goto-line)
 

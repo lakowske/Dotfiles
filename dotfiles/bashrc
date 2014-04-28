@@ -26,3 +26,5 @@ export ANT_OPTS="-Xmx512m -XX:MaxPermSize=256m"
 alias lqmysql="java -jar ~/Tools/liquibase/liquibase.jar --classpath=$WORKSPACE/database/drivers/mysql-connector-java-5.1.26-bin.jar"
 export LIQUIBASE_HOME=$WORKSPACE/shell-scripts/jenkins/liquibase-wrappers/config
 export GLOBALDBDEV=$LIQUIBASE_HOME/development/global/liquibase.properties
+
+alias e="emacs -nw"
