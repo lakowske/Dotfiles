@@ -1,7 +1,7 @@
 #!/bin/bash
 source $HOME/.color
 
-export HISTFILESIZE=1000
+export HISTFILESIZE=50000
 export PATH=$HOME/bin:$HOME/scripts:/usr/bin:$M2:/usr/local/bin:/usr/local/mysql/bin:$PATH:/usr/sbin:/usr/afsws/bin:/usr/afsws/etc
 export PATH=/usr/local/bin:/opt/local/bin:/opt/local/sbin:$DERBY_INSTALL/bin:$HOME/Software/shell-scripts/dvcs:$PATH
 
@@ -23,7 +23,14 @@ export WORKSPACE=$HOME/Software/cerebro2
 export CLASSPATH=$CLASSPATH:~/Library/Java/bsh.jar:$DERBY_INSTALL/lib/derby.jar:$DERBY_INSTALL/lib/derbytools.jar:$WORKSPACE/database/drivers
 export ANT_OPTS="-Xmx512m -XX:MaxPermSize=256m"
 
-alias lqmysql="java -jar ~/Tools/liquibase/liquibase.jar --classpath=$WORKSPACE/database/drivers/mysql-connector-java-5.1.26-bin.jar"
+#Liquibase
+WORKSPACE="/eclipse_workspaces/mandliworkspace"
+PROP_DIR="$WORKSPACE/cerebro/shell-scripts/jenkins/liquibase-wrappers/config/development"
+CHANGELOG_DIR="$WORKSPACE/cerebro/database/changelog"
+CONFIGURATION_DIR="$WORKSPACE/cerebro/configuration"
+
+
+alias lqmysql="java -jar ~/Tools/liquibase/liquibase.jar --classpath=$WORKSPACE/cerebro/database/drivers/mysql-connector-java-5.1.26-bin.jar"
 export LIQUIBASE_HOME=$WORKSPACE/shell-scripts/jenkins/liquibase-wrappers/config
 export GLOBALDBDEV=$LIQUIBASE_HOME/development/global/liquibase.properties
 
