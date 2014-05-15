@@ -185,8 +185,13 @@
                        (replace-regexp-in-string ".*1G\.\.\..*5G" "..."
                      (replace-regexp-in-string ".*1G.*3G" "&gt;" output))))))
 
-
-
+(defun node-on-buffer ()
+  "pipes the current buffer to node"
+  (interactive)
+  (shell-command-on-region 
+   (point-min) (point-max)
+   (read-shell-command "Shell command on buffer: " "node")))
+(global-set-key "\C-c\C-n" 'node-on-buffer)
 
 ;; Customizations for all of c-mode, c++-mode, and objc-mode
 (defun seth-c-mode-common-hook ()
