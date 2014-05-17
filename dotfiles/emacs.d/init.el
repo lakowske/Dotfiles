@@ -184,7 +184,9 @@
                      (lambda (output)
                        (replace-regexp-in-string ".*1G\.\.\..*5G" "..."
                      (replace-regexp-in-string ".*1G.*3G" "&gt;" output))))))
-
+(global-set-key "\C-c\C-e" 'js-send-region)
+(global-set-key "\C-c\C-b" 'js-send-buffer)
+(global-set-key "\C-c\C-n" 'run-js)
 
 
 
