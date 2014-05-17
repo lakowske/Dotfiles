@@ -13,7 +13,7 @@
   (if (eq (string-match "\\.js$" file) nil)
       nil
     file))
-
+j
 ;; Tests
 (only-js "/Volumes/home/composite/src/UI" (lambda (x) (js-pred x)))
 (add-it-up 3 3)
