@@ -27,3 +27,7 @@ Host antennaone
 Hostname 192.168.1.25
 User pi
 IdentityFile ~/.ssh/id_rsa
+
+Host epicurus
+HostName 198.46.154.82
+User seth
