@@ -1,0 +1,6 @@
+#!/bin/bash
+
+KEY_FILE=~/.ssh/id_rsa
+
+ssh-keygen -t rsa -f $KEY_FILE -P ""
+ssh-copy-id -i $KEY_FILE.pub syntropy
