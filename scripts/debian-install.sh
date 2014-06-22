@@ -1,6 +1,7 @@
 #!/bin/bash
 
 REQUIREMENTS="apt-get -y install screen emacs sudo ipython python-mode pylint python-ropemacs git-core uuid"
+EMAIL="lakowske@gmail.com"
 
 install() 
 {
@@ -12,5 +13,9 @@ install()
 	su -c "$REQUIREMENTS"
     fi
 }
+
+git()
+{
+    
 
 install
