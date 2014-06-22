@@ -5,7 +5,11 @@ DOTFILES=dotfiles/*
 FILES=files/*
 MYDIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
-echo "Usage: $BASH_SOURCE <target file>"
+if [ "$#" -ne 1 ]; then
+    echo "Usage: $BASH_SOURCE <target file>"
+    exit
+fi
+
 echo "running script: $MYDIR/$BASH_SOURCE"
 
 TARGETFILE=$1
@@ -25,5 +29,6 @@ do
     echo "linking $file"
     rm $target
     ln -s $file $target
+
 done < $TARGETFILE
 
