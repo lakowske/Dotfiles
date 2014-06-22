@@ -1,6 +1,8 @@
 #!/bin/bash
 
 REQUIREMENTS="apt-get -y install screen emacs sudo ipython python-mode pylint python-ropemacs git-core uuid"
+
+NAME="Seth Lakowske"
 EMAIL="lakowske@gmail.com"
 
 install() 
@@ -17,5 +19,6 @@ install()
 git()
 {
     
+}
 
 install
