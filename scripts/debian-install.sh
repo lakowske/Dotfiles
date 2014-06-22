@@ -7,18 +7,24 @@ EMAIL="lakowske@gmail.com"
 
 install() 
 {
-    if hash sudo 2>/dev/null; then
-	echo "executing sudo install"
-	sudo $REQUIREMENTS
-    else
+    lsb_release -a | grep Ubuntu
+    
+    if [ $? -ne 0 ] ; then
 	echo "executing su install"
 	su -c "$REQUIREMENTS"
+    else
+	echo "executing sudo install"
+	sudo $REQUIREMENTS
     fi
 }
 
-git()
+git_configure()
 {
-    
+    echo "setting git name to $NAME"
+    git config --global user.name \"$NAME\"
+    echo "setting git email to $EMAIL"
+    git config --global user.email $EMAIL
 }
 
 install
+git_configure
