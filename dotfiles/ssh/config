@@ -31,3 +31,7 @@ IdentityFile ~/.ssh/id_rsa
 Host epicurus
 HostName 198.46.154.82
 User seth
+
+Host epictetus
+HostName 198.46.154.83
+User seth

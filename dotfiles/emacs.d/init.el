@@ -17,6 +17,7 @@
 (require 'whitespace)
 (require 'dired-x)
 (require 'compile)
+(require 'uniquify)
 (ido-mode t)
 (menu-bar-mode -1)
 ;;(normal-erase-is-backspace-mode 1)
@@ -30,6 +31,7 @@
 (setq vc-follow-symlinks t)
 
 
+(setq uniquify-buffer-name-style 'reverse)
 
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
@@ -217,3 +219,29 @@
 
 ;; add our function as the c-mode-common-hook
 (add-hook 'c-mode-common-hook 'seth-c-mode-common-hook)
+
+;; UUID generator
+;; by Christopher Wellons, 2011-11-18. Editted by Xah Lee.
+;; Edited by Hideki Saito further to generate all valid variants for "N" in xxxxxxxx-xxxx-Mxxx-Nxxx-xxxxxxxxxxxx format.
+(defun insert-uuid-internal ()
+  "Insert a UUID. This uses a simple hashing of variable data."
+  (interactive)
+  (let ((myStr (md5 (format "%s%s%s%s%s%s%s%s%s%s"
+                (user-uid)
+                (emacs-pid)
+                (system-name)
+                (user-full-name)
+                (current-time)
+                (emacs-uptime)
+                (garbage-collect)
+                (buffer-string)
+                (random)
+                (recent-keys)))))
+
+    (insert (format "%s-%s-4%s-%s%s-%s"
+                    (substring myStr 0 8)
+                    (substring myStr 8 12)
+                    (substring myStr 13 16)
+            (format "%x" (+ 8 (random 4)))
+                    (substring myStr 17 20)
+                    (substring myStr 20 32)))))
