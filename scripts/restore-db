@@ -1,0 +1,12 @@
+#!/bin/bash
+
+DB=$1
+
+#echo "drop database $DB;" > db.sql
+echo "create database $DB;" >> db.sql
+echo "use $DB;" >> db.sql
+
+mysql -u root -p < db.sql
+mysql $DB -u root -p < $DB.db
+
+
