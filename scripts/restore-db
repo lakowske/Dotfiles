@@ -2,11 +2,13 @@
 
 DB=$1
 
-#echo "drop database $DB;" > db.sql
-echo "create database $DB;" >> db.sql
-echo "use $DB;" >> db.sql
+if [ ! -z "$2" ] ; then
+    
+    mysql -u root -p -e "drop database $DB ;"
 
-mysql -u root -p < db.sql
+fi
+
+mysql -u root -p -e "create database $DB ;"
 mysql $DB -u root -p < $DB.db
 
 

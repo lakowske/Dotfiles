@@ -1,4 +1,0 @@
-install emacs24
-use package-list-packages
-install yasnippet
-install js2-mode
