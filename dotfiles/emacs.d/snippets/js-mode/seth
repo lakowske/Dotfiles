@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+#name : seth (/* ... */)
+# --
+/*
+ * (C) 2014 Seth Lakowske
+ */
+$0

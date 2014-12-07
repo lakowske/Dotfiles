@@ -29,7 +29,7 @@
 (setq show-trailing-whitespace t)
 (setq suggest-key-bindings t)
 (setq vc-follow-symlinks t)
-
+(setq x-super-keysym 'meta)
 
 (setq uniquify-buffer-name-style 'reverse)
 
