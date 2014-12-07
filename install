@@ -1,5 +1,6 @@
 #!/bin/bash
 
+#Install dotfiles into my home directory
 
 DOTFILES=dotfiles/*
 FILES=files/*
@@ -31,4 +32,3 @@ do
     ln -s $file $target
 
 done < $TARGETFILE
-

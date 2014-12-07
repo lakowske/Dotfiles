@@ -1,0 +1,17 @@
+#!/bin/bash
+
+su -c "apt-get install libncurses-dev"
+wget http://ftp.gnu.org/gnu/emacs/emacs-24.3.tar.gz
+tar -zxf emacs-24.3.tar.gz
+
+cd emacs-24.3
+./configure
+make
+su -c "make install"
+
+
+
+#install emacs24
+#use package-list-packages
+#install yasnippet
+#install js2-mode
