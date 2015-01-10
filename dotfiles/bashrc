@@ -7,6 +7,21 @@ export PATH=/usr/local/bin:/opt/local/bin:/opt/local/sbin:$DERBY_INSTALL/bin:$HO
 
 #export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/$HOME/lib
 
+function setjdk() {
+    if [ $# -ne 0 ]; then
+	removeFromPath '/System/Library/Frameworks/JavaVM.framework/Home/bin'
+	if [ -n "${JAVA_HOME+x}" ]; then
+	    removeFromPath $JAVA_HOME
+	fi
+	export JAVA_HOME=`/usr/libexec/java_home -v $@`
+	export PATH=$JAVA_HOME/bin:$PATH
+    fi
+}
+
+function removeFromPath() {
+    export PATH=$(echo $PATH | sed -E -e "s;:$1;;" -e "s;$1:?;;")
+}
+
 export EDITOR="emacs -nw"
 export PAGER=less
 export CVS_RSH=ssh
@@ -16,7 +31,7 @@ export PYTHONPATH=$PYTHONPATH:$HOME/RedHawk
 
 export MAVEN3_HOME=/opt/local/share/java/maven3
 export M3=$MAVEN3_HOME/bin
-export JAVA_HOME=/Library/Java/Home
+export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_25.jdk/Contents/Home
 export MAVEN_OPTS='-Xmx1024m'
 export DERBY_INSTALL=~/Tools/db-derby-10.9.1.0-bin
 export WORKSPACE=$HOME/Software/cerebro2
@@ -35,3 +50,5 @@ export LIQUIBASE_HOME=$WORKSPACE/shell-scripts/jenkins/liquibase-wrappers/config
 export GLOBALDBDEV=$LIQUIBASE_HOME/development/global/liquibase.properties
 
 alias e="emacs -nw"
+
+setjdk 1.6
