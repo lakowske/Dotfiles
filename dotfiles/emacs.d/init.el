@@ -245,3 +245,5 @@
             (format "%x" (+ 8 (random 4)))
                     (substring myStr 17 20)
                     (substring myStr 20 32)))))
+
+(dired ".")
