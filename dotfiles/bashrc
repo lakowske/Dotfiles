@@ -22,6 +22,14 @@ function removeFromPath() {
     export PATH=$(echo $PATH | sed -E -e "s;:$1;;" -e "s;$1:?;;")
 }
 
+function gchk() {
+    git checkout `git branch -a | sed -e 's/\(.*\/\)//g' | grep $1 | head -n 1`
+}
+
+function gbr() {
+    git branch -a | sed -e 's/\(.*\/\)//g' | grep $1
+}
+
 export EDITOR="emacs -nw"
 export PAGER=less
 export CVS_RSH=ssh
@@ -51,4 +59,4 @@ export GLOBALDBDEV=$LIQUIBASE_HOME/development/global/liquibase.properties
 
 alias e="emacs -nw"
 
-setjdk 1.6
+setjdk 1.8
