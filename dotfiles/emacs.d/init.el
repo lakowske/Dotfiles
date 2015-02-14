@@ -197,6 +197,14 @@
    (read-shell-command "Shell command on buffer: " "node")))
 (global-set-key "\C-c\C-n" 'node-on-buffer)
 
+(defun java-on-buffer ()
+  "pipes the current buffer to javac, then java"
+  (interactive)
+  (shell-command-on-region
+   (point-min) (point-max)
+   (read-shell-command "Shell command on buffer: " "javac | java")))
+(global-set-key "\C-c\C-j" 'java-on-buffer)
+
 ;; Customizations for all of c-mode, c++-mode, and objc-mode
 (defun seth-c-mode-common-hook ()
 
