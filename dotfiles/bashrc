@@ -31,7 +31,7 @@ function gbr() {
 }
 
 function gcma() {
-    git commit -am $1
+    git commit -am "$1"
 }
 
 export EDITOR="emacs -nw"
