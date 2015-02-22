@@ -18,6 +18,8 @@
 (require 'dired-x)
 (require 'compile)
 (require 'uniquify)
+(require 'package)
+(add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/") t)
 (ido-mode t)
 (menu-bar-mode -1)
 ;;(normal-erase-is-backspace-mode 1)
