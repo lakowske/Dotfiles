@@ -6,6 +6,7 @@
 ;; ---------------------
 
 (add-to-list 'load-path "~/.emacs.d")
+(require 'package)
 (require 'cl)
 (require 'ido)
 (require 'ffap)
@@ -74,6 +75,7 @@
 (global-set-key "\C-x\C-r" 'query-replace)
 (global-set-key "\C-x\C-i" 'indent-region)
 (global-set-key (kbd "C-x /") 'comment-or-uncomment-region)
+(global-set-key "\C-c\C-f" 'find-grep)
 
 ;; setup home and end to work correctly
 (global-set-key [home] 'beginning-of-buffer)
@@ -96,7 +98,12 @@
 (add-to-list 'auto-mode-alist '("\\.styl$" . sws-mode))
 (add-to-list 'auto-mode-alist '("\\.jade$" . jade-mode))
 
-
+;; ----------------------------
+;; -- ARC Mode configuration --
+;; ----------------------------
+;; load arc.el and auto run arc-mode when file is of .arc extension 
+(load-file "~/.emacs.d/arc.el") 
+(add-to-list 'auto-mode-alist '("\\.arc$" . arc-mode))  
 
 ;; ----------------------------
 ;; -- Original configuration --
@@ -253,5 +260,12 @@
             (format "%x" (+ 8 (random 4)))
                     (substring myStr 17 20)
                     (substring myStr 20 32)))))
+
+(add-to-list 'package-archives
+             '("melpa" . "http://melpa.org/packages/") t)
+(when (< emacs-major-version 24)
+  ;; For important compatibility libraries like cl-lib
+  (add-to-list 'package-archives '("gnu" . "http://elpa.gnu.org/packages/")))
+(package-initialize) ;; You might already have this line
 
 (dired ".")
