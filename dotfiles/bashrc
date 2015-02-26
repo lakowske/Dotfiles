@@ -30,6 +30,10 @@ function gbr() {
     git branch -a | sed -e 's/\(.*\/\)//g' | grep $1
 }
 
+function gcma() {
+    git commit -am "$1"
+}
+
 export EDITOR="emacs -nw"
 export PAGER=less
 export CVS_RSH=ssh
