@@ -256,4 +256,6 @@
                     (substring myStr 17 20)
                     (substring myStr 20 32)))))
 
+(setq geiser-active-implementations '(racket))
+
 (dired ".")
