@@ -265,6 +265,9 @@
                     (substring myStr 17 20)
                     (substring myStr 20 32)))))
 
+
+(setq geiser-active-implementations '(racket))
+
 (add-to-list 'package-archives
              '("melpa" . "http://melpa.org/packages/") t)
 (when (< emacs-major-version 24)

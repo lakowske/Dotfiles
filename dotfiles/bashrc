@@ -34,6 +34,10 @@ function gcma() {
     git commit -am "$1"
 }
 
+function gp() {
+    git push
+}
+
 export EDITOR="emacs -nw"
 export PAGER=less
 export CVS_RSH=ssh
