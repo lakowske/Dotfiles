@@ -5,7 +5,7 @@
 ;; -- Global Settings --
 ;; ---------------------
 
-(add-to-list 'load-path "~/.emacs.d")
+(add-to-list 'load-path "~/.emacs.d/lisp")
 (require 'package)
 (require 'cl)
 (require 'ido)
@@ -87,9 +87,10 @@
 (global-set-key "\M-n" 'end-of-buffer)
 
 
-(add-to-list 'load-path "~/.emacs.d/")
 (add-to-list 'load-path "~/.emacs.d/jade-mode") ;; github.com/brianc/jade-mode
 (add-to-list 'load-path "~/.emacs.d/elpa/yasnippet-0.8.0")
+(add-to-list 'load-path "~/.emacs.d/elpa/flymake-jshint-20140319.1500/")
+(add-to-list 'load-path "~/.emacs.d/elpa/flymake-easy-20140818.55/")
 
 ;; ---------------------------
 ;; -- JS Mode configuration --
@@ -104,7 +105,7 @@
 ;; -- ARC Mode configuration --
 ;; ----------------------------
 ;; load arc.el and auto run arc-mode when file is of .arc extension 
-(load-file "~/.emacs.d/arc.el") 
+(load-file "~/.emacs.d/lisp/arc.el") 
 (add-to-list 'auto-mode-alist '("\\.arc$" . arc-mode))  
 
 ;; ----------------------------
@@ -155,8 +156,8 @@
 
 
 
-;;(add-to-list 'load-path "~/.emacs.d/plugin/jshint-mode")
-;;(require 'flymake-jshint)
+(require 'flymake-easy)
+(require 'flymake-jshint)
 
 ;; Whitespace configuration
 (require 'whitespace)
@@ -168,6 +169,7 @@
 (add-hook 'js-mode-hook (lambda () (flymake-mode t)))
 (add-hook 'js-mode-hook (lambda () (setq indent-tabs-mode nil)))
 (add-hook 'js-mode-hook (lambda () (global-linum-mode t)))
+(add-hook 'js-mode-hook 'flymake-mode)
 
 (add-hook 'sh-mode-hook 'whitespace-mode)
 (add-hook 'sh-mode-hook (lambda () (global-linum-mode t)))
@@ -183,7 +185,7 @@
 ;;(autoload 'js2-mode "js2" nil t)
 ;;(add-to-list 'auto-mode-alist '("\\.js$" . js2-mode))
 
-(add-to-list 'load-path "~/.emacs.d/js-comint.el")
+(add-to-list 'load-path "~/.emacs.d/lisp/js-comint.el")
 (require 'js-comint)
 (setq inferior-js-program-command "node")
 (setq inferior-js-mode-hook
@@ -270,4 +272,9 @@
   (add-to-list 'package-archives '("gnu" . "http://elpa.gnu.org/packages/")))
 (package-initialize) ;; You might already have this line
 
+
 (dired ".")
+(split-window)
+(other-window 1)
+(switch-to-buffer "*scratch*")
+
