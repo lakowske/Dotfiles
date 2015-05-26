@@ -35,3 +35,4 @@ export LIQUIBASE_HOME=$WORKSPACE/shell-scripts/jenkins/liquibase-wrappers/config
 export GLOBALDBDEV=$LIQUIBASE_HOME/development/global/liquibase.properties
 
 alias e="emacs -nw"
+alias ec="emacsclient -t"
