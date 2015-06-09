@@ -1,6 +1,6 @@
 #!/bin/bash
 source $HOME/.color
-
+source $HOME/scripts/git-completion.bash
 export HISTFILESIZE=50000
 export PATH=$HOME/bin:$HOME/scripts:/usr/bin:$M2:/usr/local/bin:/usr/local/mysql/bin:$PATH:/usr/sbin:/usr/afsws/bin:/usr/afsws/etc
 export PATH=/usr/local/bin:/opt/local/bin:/opt/local/sbin:$DERBY_INSTALL/bin:$HOME/Software/shell-scripts/dvcs:$PATH
@@ -36,6 +36,14 @@ function gcma() {
 
 function gp() {
     git push
+}
+
+function gs() {
+    git status
+}
+
+function gd() {
+    git diff
 }
 
 export EDITOR="emacs -nw"

@@ -19,8 +19,7 @@
 (require 'dired-x)
 (require 'compile)
 (require 'uniquify)
-(require 'package)
-(add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/") t)
+
 (ido-mode t)
 (menu-bar-mode -1)
 ;;(normal-erase-is-backspace-mode 1)
@@ -86,6 +85,23 @@
 (global-set-key [end] 'end-of-buffer)
 (global-set-key "\M-n" 'end-of-buffer)
 
+;; -------------------------------
+;; -- Ensure packages installed --
+;; -------------------------------
+(require 'package)
+(add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/") t)
+(add-to-list 'package-archives
+	     '("melpa-stable" . "http://melpa-stable.milkbox.net/packages/"))
+(package-initialize)
+
+(defvar my-packages '(better-defaults
+		      projectile
+		      clojure-mode
+		      cider))
+
+(dolist (p my-packages)
+  (unless (package-installed-p p)
+        (package-install p)))
 
 (add-to-list 'load-path "~/.emacs.d/jade-mode") ;; github.com/brianc/jade-mode
 (add-to-list 'load-path "~/.emacs.d/elpa/yasnippet-0.8.0")
@@ -100,6 +116,7 @@
 (require 'jade-mode)    
 (add-to-list 'auto-mode-alist '("\\.styl$" . sws-mode))
 (add-to-list 'auto-mode-alist '("\\.jade$" . jade-mode))
+(add-to-list 'auto-mode-alist (cons (rx ".js" eos) 'js2-mode))
 
 ;; ----------------------------
 ;; -- ARC Mode configuration --
@@ -184,6 +201,10 @@
 
 ;;(autoload 'js2-mode "js2" nil t)
 ;;(add-to-list 'auto-mode-alist '("\\.js$" . js2-mode))
+
+(add-hook 'js2-mode-hook 'skewer-mode)
+(add-hook 'css-mode-hook 'skewer-css-mode)
+(add-hook 'html-mode-hook 'skewer-html-mode)
 
 (add-to-list 'load-path "~/.emacs.d/lisp/js-comint.el")
 (require 'js-comint)
