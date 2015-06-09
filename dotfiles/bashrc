@@ -71,3 +71,14 @@ setjdk 1.8
 
 #Node
 export NODE_PATH=/Volumes/home/:$HOME/workspace
+
+#Git
+git config user.name "Seth Lakowske"
+
+function gpersonal() {
+    git config user.email lakowske@gmail.com
+}
+
+function gwork() {
+    git config user.email slakowske@mandli.com
+}
