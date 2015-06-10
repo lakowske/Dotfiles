@@ -1,26 +1,10 @@
 #!/bin/bash
+
 source $HOME/.color
 source $HOME/scripts/git-completion.bash
 export HISTFILESIZE=50000
 export PATH=$HOME/bin:$HOME/scripts:/usr/bin:$M2:/usr/local/bin:/usr/local/mysql/bin:$PATH:/usr/sbin:/usr/afsws/bin:/usr/afsws/etc
 export PATH=/usr/local/bin:/opt/local/bin:/opt/local/sbin:$DERBY_INSTALL/bin:$HOME/Software/shell-scripts/dvcs:$PATH
-
-#export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/$HOME/lib
-
-function setjdk() {
-    if [ $# -ne 0 ]; then
-	removeFromPath '/System/Library/Frameworks/JavaVM.framework/Home/bin'
-	if [ -n "${JAVA_HOME+x}" ]; then
-	    removeFromPath $JAVA_HOME
-	fi
-	export JAVA_HOME=`/usr/libexec/java_home -v $@`
-	export PATH=$JAVA_HOME/bin:$PATH
-    fi
-}
-
-function removeFromPath() {
-    export PATH=$(echo $PATH | sed -E -e "s;:$1;;" -e "s;$1:?;;")
-}
 
 function gchk() {
     git checkout `git branch -a | sed -e 's/\(.*\/\)//g' | grep $1 | head -n 1`
@@ -58,24 +42,10 @@ export M3=$MAVEN3_HOME/bin
 export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_25.jdk/Contents/Home
 export MAVEN_OPTS='-Xmx1024m'
 export DERBY_INSTALL=~/Tools/db-derby-10.9.1.0-bin
-export WORKSPACE=$HOME/Software/cerebro2
 export CLASSPATH=$CLASSPATH:~/Library/Java/bsh.jar:$DERBY_INSTALL/lib/derby.jar:$DERBY_INSTALL/lib/derbytools.jar:$WORKSPACE/database/drivers
 export ANT_OPTS="-Xmx512m -XX:MaxPermSize=256m"
 
-#Liquibase
-WORKSPACE="/eclipse_workspaces/mandliworkspace"
-PROP_DIR="$WORKSPACE/cerebro/shell-scripts/jenkins/liquibase-wrappers/config/development"
-CHANGELOG_DIR="$WORKSPACE/cerebro/database/changelog"
-CONFIGURATION_DIR="$WORKSPACE/cerebro/configuration"
-
-
-alias lqmysql="java -jar ~/Tools/liquibase/liquibase.jar --classpath=$WORKSPACE/cerebro/database/drivers/mysql-connector-java-5.1.26-bin.jar"
-export LIQUIBASE_HOME=$WORKSPACE/shell-scripts/jenkins/liquibase-wrappers/config
-export GLOBALDBDEV=$LIQUIBASE_HOME/development/global/liquibase.properties
-
 alias e="emacs -nw"
-
-setjdk 1.8
 
 #Node
 export NODE_PATH=/Volumes/home/:$HOME/workspace
@@ -87,6 +57,9 @@ function gpersonal() {
     git config user.email lakowske@gmail.com
 }
 
-function gwork() {
-    git config user.email slakowske@mandli.com
-}
+#include work configuration if it exists
+WORKBASHRC=$HOME/workScripts/workBashrc.sh
+if [ -e $WORKBASHRC ]; then
+    source $WORKBASHRC
+fi
+
