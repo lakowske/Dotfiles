@@ -1,4 +1,5 @@
 (source melpa)
+(source gnu)
 
 (depends-on "yasnippet")
 (depends-on "smooth-scrolling")
@@ -8,3 +9,4 @@
 (depends-on "cider")
 (depends-on "auto-complete")
 (depends-on "js2-mode")
+(depends-on "magit")
