@@ -1,11 +1,34 @@
 #!/bin/bash
-source $HOME/.color
 
+source $HOME/.color
+source $HOME/scripts/git-completion.bash
 export HISTFILESIZE=50000
 export PATH=$HOME/bin:$HOME/scripts:/usr/bin:$M2:/usr/local/bin:/usr/local/mysql/bin:$PATH:/usr/sbin:/usr/afsws/bin:/usr/afsws/etc
 export PATH=/usr/local/bin:/opt/local/bin:/opt/local/sbin:$DERBY_INSTALL/bin:$HOME/Software/shell-scripts/dvcs:$PATH
 
-#export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/$HOME/lib
+function gchk() {
+    git checkout `git branch -a | sed -e 's/\(.*\/\)//g' | grep $1 | head -n 1`
+}
+
+function gbr() {
+    git branch -a | sed -e 's/\(.*\/\)//g' | grep $1
+}
+
+function gcma() {
+    git commit -am "$1"
+}
+
+function gp() {
+    git push
+}
+
+function gs() {
+    git status
+}
+
+function gd() {
+    git diff
+}
 
 export EDITOR="emacs -nw"
 export PAGER=less
@@ -16,23 +39,31 @@ export PYTHONPATH=$PYTHONPATH:$HOME/RedHawk
 
 export MAVEN3_HOME=/opt/local/share/java/maven3
 export M3=$MAVEN3_HOME/bin
-export JAVA_HOME=/Library/Java/Home
+export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_25.jdk/Contents/Home
 export MAVEN_OPTS='-Xmx1024m'
 export DERBY_INSTALL=~/Tools/db-derby-10.9.1.0-bin
-export WORKSPACE=$HOME/Software/cerebro2
 export CLASSPATH=$CLASSPATH:~/Library/Java/bsh.jar:$DERBY_INSTALL/lib/derby.jar:$DERBY_INSTALL/lib/derbytools.jar:$WORKSPACE/database/drivers
 export ANT_OPTS="-Xmx512m -XX:MaxPermSize=256m"
 
-#Liquibase
-WORKSPACE="/eclipse_workspaces/mandliworkspace"
-PROP_DIR="$WORKSPACE/cerebro/shell-scripts/jenkins/liquibase-wrappers/config/development"
-CHANGELOG_DIR="$WORKSPACE/cerebro/database/changelog"
-CONFIGURATION_DIR="$WORKSPACE/cerebro/configuration"
+alias e="emacs -nw"
+
+#Node
+export NODE_PATH=/Volumes/home/:$HOME/workspace
 
 
-alias lqmysql="java -jar ~/Tools/liquibase/liquibase.jar --classpath=$WORKSPACE/cerebro/database/drivers/mysql-connector-java-5.1.26-bin.jar"
-export LIQUIBASE_HOME=$WORKSPACE/shell-scripts/jenkins/liquibase-wrappers/config
-export GLOBALDBDEV=$LIQUIBASE_HOME/development/global/liquibase.properties
 
 alias e="emacs -nw"
 alias ec="emacsclient -t"
+
+function gpersonal() {
+    #Git
+    git config user.name "Seth Lakowske"
+    git config user.email lakowske@gmail.com
+}
+
+#include work configuration if it exists
+WORKBASHRC=$HOME/workScripts/workBashrc.sh
+if [ -e $WORKBASHRC ]; then
+    source $WORKBASHRC
+fi
+
