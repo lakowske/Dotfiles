@@ -115,6 +115,10 @@
 (add-hook 'sh-mode-hook (lambda () (global-linum-mode t)))
 (add-to-list 'load-path "~/emacs/minor-modes")
 
+;; HTML configuration
+(add-hook 'html-mode-hook 'auto-fill-mode)
+
+;; Javascript configuration
 (add-hook 'js2-mode-hook 'skewer-mode)
 (add-hook 'css-mode-hook 'skewer-css-mode)
 (add-hook 'html-mode-hook 'skewer-html-mode)

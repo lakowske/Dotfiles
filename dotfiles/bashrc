@@ -50,10 +50,10 @@ alias e="emacs -nw"
 #Node
 export NODE_PATH=/Volumes/home/:$HOME/workspace
 
-#Git
-git config user.name "Seth Lakowske"
 
 function gpersonal() {
+    #Git
+    git config user.name "Seth Lakowske"
     git config user.email lakowske@gmail.com
 }
 
