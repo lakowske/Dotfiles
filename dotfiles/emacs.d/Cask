@@ -1,0 +1,17 @@
+(source melpa)
+(source gnu)
+
+(depends-on "ispell")
+(depends-on "yasnippet")
+(depends-on "smooth-scrolling")
+(depends-on "better-defaults")
+;; (depends-on "projectile")
+(depends-on "clojure-mode")
+(depends-on "cider")
+(depends-on "auto-complete")
+(depends-on "js2-mode")
+(depends-on "magit")
+(depends-on "skewer-mode")
+(depends-on "yaml-mode")
+(depends-on "csv-mode")
+
