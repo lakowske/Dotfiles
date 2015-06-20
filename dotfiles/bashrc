@@ -7,14 +7,25 @@ export PATH=/usr/local/bin:/opt/local/bin:/opt/local/sbin:$DERBY_INSTALL/bin:$HO
 
 #export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/$HOME/lib
 
+export DIRECTORY=/usr/local/java/default
+if [ -d "$DIRECTORY" ]; then
+  # Control will enter here if $DIRECTORY exists.
+    export JAVA_HOME=/usr/local/java/default
+    export PATH=$JAVA_HOME/bin:$PATH
+    echo "JAVA $JAVA_HOME EXISTS!"
+fi
+
 function setjdk() {
     if [ $# -ne 0 ]; then
 	removeFromPath '/System/Library/Frameworks/JavaVM.framework/Home/bin'
 	if [ -n "${JAVA_HOME+x}" ]; then
 	    removeFromPath $JAVA_HOME
+	    echo "removing"
 	fi
-	export JAVA_HOME=`/usr/libexec/java_home -v $@`
-	export PATH=$JAVA_HOME/bin:$PATH
+	if [ -x "/usr/libexec/java_home" ]; then
+	    export JAVA_HOME=`/usr/libexec/java_home -v $@`
+	    export PATH=$JAVA_HOME/bin:$PATH
+	fi
     fi
 }
 
@@ -37,6 +48,7 @@ function gcma() {
 function gp() {
     git push
 }
+
 
 export EDITOR="emacs -nw"
 export PAGER=less
