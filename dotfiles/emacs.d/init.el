@@ -142,6 +142,9 @@
    (read-shell-command "Shell command on buffer: " "javac | java")))
 (global-set-key "\C-c\C-j" 'java-on-buffer)
 
+;; Text mode configuration
+(add-hook 'text-mode-hook 'auto-fill-mode)
+
 ;; Customizations for all of c-mode, c++-mode, and objc-mode
 (defun seth-c-mode-common-hook ()
 

@@ -1,7 +1,0 @@
-# -*- mode: snippet -*-
-#name : modp (/* ... */)
-# --
-(function($2) {
-
-})($1)
-
