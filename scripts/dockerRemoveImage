@@ -1,0 +1,14 @@
+#!/bin/bash
+
+# Seth Lakowske (C) 2015
+# BSD3
+
+if [ "$#" -ne 1 ]; then
+    echo "Usage: dockerRemoveImage <image name>"
+    exit -1
+fi
+
+#Delete a container matching the given patern
+docker rm $(docker ps -a | grep $1 | cut -d ' ' -f 1)
+
+docker rmi $1

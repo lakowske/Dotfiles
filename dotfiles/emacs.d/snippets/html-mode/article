@@ -1,0 +1,14 @@
+#name : article
+# --
+<html>
+  <head>
+    <title>$0</title>
+  </head>
+  <body>
+      <h1>$1</h1>
+      <h3>Posted by: <a href="http://sethlakowske.com">Seth Lakowske</a></h3>
+      <p>Published: <time pubdate="pubdate">$2</time></p>
+$3
+  </body>
+</html>
+
