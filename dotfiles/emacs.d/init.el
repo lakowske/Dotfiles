@@ -10,7 +10,6 @@
 ;; -- Global Settings --
 ;; ---------------------
 
-(add-to-list 'load-path "~/.emacs.d/lisp")
 (require 'package)
 (require 'cl)
 (require 'ido)
@@ -21,9 +20,9 @@
 (require 'linum)
 (require 'smooth-scrolling)
 (require 'whitespace)
-(require 'dired-x)
-(require 'compile)
-(require 'uniquify)
+
+
+
 
 (ido-mode t)
 (menu-bar-mode -1)
@@ -59,8 +58,6 @@
 
 (global-set-key [end] 'end-of-buffer)
 (global-set-key "\M-n" 'end-of-buffer)
-
-(add-to-list 'load-path "~/.emacs.d/elpa/yasnippet-0.8.0")
 
 ;; ---------------------------
 ;; -- JS Mode configuration --

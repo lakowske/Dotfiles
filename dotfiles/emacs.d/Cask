@@ -3,6 +3,7 @@
 
 (depends-on "ispell")
 (depends-on "yasnippet")
+(depends-on "popup")
 (depends-on "smooth-scrolling")
 (depends-on "better-defaults")
 ;; (depends-on "projectile")
