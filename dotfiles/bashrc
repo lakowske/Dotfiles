@@ -5,6 +5,7 @@ source $HOME/scripts/git-completion.bash
 export HISTFILESIZE=50000
 export PATH=$HOME/bin:$HOME/scripts:/usr/bin:$M2:/usr/local/bin:/usr/local/mysql/bin:$PATH:/usr/sbin:/usr/afsws/bin:/usr/afsws/etc
 export PATH=/usr/local/bin:/opt/local/bin:/opt/local/sbin:$DERBY_INSTALL/bin:$HOME/Software/shell-scripts/dvcs:$PATH
+export PATH=$HOME/.cask/bin:$PATH
 
 function gchk() {
     git checkout `git branch -a | sed -e 's/\(.*\/\)//g' | grep $1 | head -n 1`
