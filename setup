@@ -1,5 +1,7 @@
 #!/bin/bash
 
+./install targetFile
+
 CASK=$HOME/.cask/bin/cask
 
 if [ ! -e $CASK ]; then
