@@ -11,5 +11,4 @@ fi
 
 cd $HOME/.emacs.d/
 
-cask install
-
+$CASK install
