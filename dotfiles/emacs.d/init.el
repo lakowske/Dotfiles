@@ -94,6 +94,7 @@
 (define-key yas-minor-mode-map (kbd "<tab>") nil)
 (define-key yas-minor-mode-map (kbd "TAB") nil)
 (define-key yas-minor-mode-map (kbd "<backtab>") 'yas-expand)
+(define-key yas-minor-mode-map (kbd "\C-c TAB") 'yas-expand)
 
 (require 'auto-complete-config)
 (add-to-list 'ac-dictionary-directories "~/.emacs.d/ac-dict")
@@ -116,12 +117,42 @@
 (add-hook 'html-mode-hook 'auto-fill-mode)
 
 ;; Javascript configuration
+;;(add-hook 'js2-mode-hook #'js2-refactor-mode)
+(add-hook 'js2-mode-hook (lambda () (tern-mode t)))
+(eval-after-load 'tern
+  '(progn
+     (require 'tern-auto-complete)
+     (tern-ac-setup)))
+
+;; Send region to nodejs repl
+(defun send-region-to-nodejs-repl-process (start end)
+  "Send region to `nodejs-repl' process."
+  (interactive "r")
+  (save-selected-window
+    (save-excursion (nodejs-repl)))
+  (comint-send-region (get-process nodejs-repl-process-name)
+                      start end))
+
+ (defun send-buffer-to-nodejs-repl-process ()
+   "Send buffer to `nodejs-repl' process."
+   (interactive)
+   (comint-send-region (get-process nodejs-repl-process-name) (point-min) (point-max)))
+
+
+(defun my-js2-mode-config ()
+  (local-set-key (kbd "C-c C-e") 'send-region-to-nodejs-repl-process)
+  (local-set-key (kbd "C-c C-b") 'send-buffer-to-nodejs-repl-process)
+  )
+
+(global-set-key "\C-c\C-n" 'nodejs-repl)
+
 (add-hook 'js2-mode-hook 'skewer-mode)
+(add-hook 'js2-mode-hook 'my-js2-mode-config)
 (add-hook 'css-mode-hook 'skewer-css-mode)
 (add-hook 'html-mode-hook 'skewer-html-mode)
 
-(global-set-key "\C-c\C-e" 'js-send-region)
-(global-set-key "\C-c\C-b" 'js-send-buffer)
+;;(global-set-key "\C-c\C-e" 'js-send-region)
+;;(global-set-key "\C-c\C-b" 'js-send-buffer)
 
 (defun node-on-buffer ()
   "pipes the current buffer to node"
@@ -129,7 +160,8 @@
   (shell-command-on-region 
    (point-min) (point-max)
    (read-shell-command "Shell command on buffer: " "node")))
-(global-set-key "\C-c\C-n" 'node-on-buffer)
+
+
 
 (defun java-on-buffer ()
   "pipes the current buffer to javac, then java"

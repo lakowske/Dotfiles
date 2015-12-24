@@ -11,8 +11,13 @@
 (depends-on "cider")
 (depends-on "auto-complete")
 (depends-on "js2-mode")
+(depends-on "js2-refactor")
+(depends-on "tern")
+(depends-on "tern-auto-complete")
 (depends-on "magit")
 (depends-on "skewer-mode")
 (depends-on "yaml-mode")
 (depends-on "csv-mode")
+(depends-on "ess")
+(depends-on "nodejs-repl")
 

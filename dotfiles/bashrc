@@ -2,10 +2,16 @@
 
 source $HOME/.color
 source $HOME/scripts/git-completion.bash
-export HISTFILESIZE=50000
+
 export PATH=$HOME/bin:$HOME/scripts:/usr/bin:$M2:/usr/local/bin:/usr/local/mysql/bin:$PATH:/usr/sbin:/usr/afsws/bin:/usr/afsws/etc
-export PATH=/usr/local/bin:/opt/local/bin:/opt/local/sbin:$DERBY_INSTALL/bin:$HOME/Software/shell-scripts/dvcs:$PATH
+export PATH=/usr/local/cuda/bin:/usr/local/bin:/opt/local/bin:/opt/local/sbin:$DERBY_INSTALL/bin:$HOME/Software/shell-scripts/dvcs:$PATH
 export PATH=$HOME/.cask/bin:$PATH
+export DYLD_LIBRARY_PATH=/Developer/NVIDIA/CUDA-7.0/lib:$DYLD_LIBRARY_PATH
+
+unset HISTFILESIZE
+HOSTNAME="$(hostname)"
+HOSTNAME_SHORT="${HOSTNAME%%.*}"
+HISTFILE="${HOME}/.history/$(date -u +%Y/%m/%d.%H.%M.%S)_${HOSTNAME_SHORT}_$$"
 
 function gchk() {
     git checkout `git branch -a | sed -e 's/\(.*\/\)//g' | grep $1 | head -n 1`
@@ -49,9 +55,10 @@ export ANT_OPTS="-Xmx512m -XX:MaxPermSize=256m"
 alias e="emacs -nw"
 
 #Node
-export NODE_PATH=/Volumes/home/:$HOME/workspace
+export NODE_PATH=/Users/home/:$HOME/workspace:/Users/home/javascript
 
-
+#Cuda
+export CUDA_ROOT=/usr/local/cuda
 
 alias e="emacs -nw"
 alias ec="emacsclient -t"
@@ -68,3 +75,9 @@ if [ -e $WORKBASHRC ]; then
     source $WORKBASHRC
 fi
 
+
+# The next line updates PATH for the Google Cloud SDK.
+source '/Users/slakowske/Tools/google-cloud-sdk/path.bash.inc'
+
+# The next line enables shell command completion for gcloud.
+source '/Users/slakowske/Tools/google-cloud-sdk/completion.bash.inc'

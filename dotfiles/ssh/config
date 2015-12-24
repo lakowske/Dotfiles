@@ -35,3 +35,10 @@ User seth
 Host epictetus
 HostName 198.46.154.83
 User seth
+
+Host gce1
+Hostname 104.154.88.68
+User slakowske
+IdentityFile ~/.ssh/google_compute_engine
+UserKnownHostsFile /dev/null
+CheckHostIP no
