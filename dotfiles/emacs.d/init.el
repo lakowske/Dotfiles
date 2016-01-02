@@ -144,7 +144,21 @@
   (local-set-key (kbd "C-c C-b") 'send-buffer-to-nodejs-repl-process)
   )
 
-(global-set-key "\C-c\C-n" 'nodejs-repl)
+(defun switch-to-previous-buffer ()
+    "Switch to previously open buffer.
+Repeated invocations toggle between the two most recently open buffers."
+    (interactive)
+    (switch-to-buffer (other-buffer (current-buffer) 1)))
+
+(defun start-nodejs-repl ()
+  (interactive)
+  (nodejs-repl)
+  (other-window -1)
+  )
+
+(global-set-key (kbd "C-c C-\\") 'comment-region)
+(global-set-key (kbd "C-c |") 'uncomment-region)
+(global-set-key (kbd "\C-c\C-n") 'start-nodejs-repl)
 
 (add-hook 'js2-mode-hook 'skewer-mode)
 (add-hook 'js2-mode-hook 'my-js2-mode-config)
