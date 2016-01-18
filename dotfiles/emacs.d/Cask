@@ -20,4 +20,9 @@
 (depends-on "csv-mode")
 (depends-on "ess")
 (depends-on "nodejs-repl")
+(depends-on "haskell-mode")
+(depends-on "elm-mode")
+(depends-on "elm-repl")
+(depends-on "python-mode")
+
 

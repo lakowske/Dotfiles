@@ -142,6 +142,7 @@
 (defun my-js2-mode-config ()
   (local-set-key (kbd "C-c C-e") 'send-region-to-nodejs-repl-process)
   (local-set-key (kbd "C-c C-b") 'send-buffer-to-nodejs-repl-process)
+  (local-set-key (kbd "C-c C-u") 'js2-mode-toggle-element)
   )
 
 (defun switch-to-previous-buffer ()

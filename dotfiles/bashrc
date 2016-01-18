@@ -8,10 +8,14 @@ export PATH=/usr/local/cuda/bin:/usr/local/bin:/opt/local/bin:/opt/local/sbin:$D
 export PATH=$HOME/.cask/bin:$PATH
 export DYLD_LIBRARY_PATH=/Developer/NVIDIA/CUDA-7.0/lib:$DYLD_LIBRARY_PATH
 
-unset HISTFILESIZE
+export HISTSIZE=10000
+export HISTFILESIZE=100000
+export HISTFILE=$HOME/.history/myhist
+
+#HISTFILE="${HOME}/.history/$(date -u +%Y/%m/%d.%H.%M.%S)_${HOSTNAME_SHORT}_$$"
 HOSTNAME="$(hostname)"
 HOSTNAME_SHORT="${HOSTNAME%%.*}"
-HISTFILE="${HOME}/.history/$(date -u +%Y/%m/%d.%H.%M.%S)_${HOSTNAME_SHORT}_$$"
+
 
 function gchk() {
     git checkout `git branch -a | sed -e 's/\(.*\/\)//g' | grep $1 | head -n 1`
@@ -46,7 +50,7 @@ export PYTHONPATH=$PYTHONPATH:$HOME/RedHawk
 
 export MAVEN3_HOME=/opt/local/share/java/maven3
 export M3=$MAVEN3_HOME/bin
-export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_25.jdk/Contents/Home
+export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_66.jdk/Contents/Home
 export MAVEN_OPTS='-Xmx1024m'
 export DERBY_INSTALL=~/Tools/db-derby-10.9.1.0-bin
 export CLASSPATH=$CLASSPATH:~/Library/Java/bsh.jar:$DERBY_INSTALL/lib/derby.jar:$DERBY_INSTALL/lib/derbytools.jar:$WORKSPACE/database/drivers
