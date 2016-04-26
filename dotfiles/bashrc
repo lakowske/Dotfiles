@@ -59,7 +59,7 @@ export ANT_OPTS="-Xmx512m -XX:MaxPermSize=256m"
 alias e="emacs -nw"
 
 #Node
-export NODE_PATH=/Users/home/:$HOME/workspace:/Users/home/javascript
+export NODE_PATH=/Users/home/:$HOME/workspace:/Users/home/javascript:/Volumes/home/javascript
 
 #Cuda
 export CUDA_ROOT=/usr/local/cuda

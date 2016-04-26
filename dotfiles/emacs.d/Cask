@@ -24,5 +24,7 @@
 (depends-on "elm-mode")
 (depends-on "elm-repl")
 (depends-on "python-mode")
-
+(depends-on "ein")
+(depends-on "helm")
+(depends-on "projectile")
 

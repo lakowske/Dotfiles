@@ -143,6 +143,7 @@
   (local-set-key (kbd "C-c C-e") 'send-region-to-nodejs-repl-process)
   (local-set-key (kbd "C-c C-b") 'send-buffer-to-nodejs-repl-process)
   (local-set-key (kbd "C-c C-u") 'js2-mode-toggle-element)
+  (js2-imenu-extras-mode)
   )
 
 (defun switch-to-previous-buffer ()
@@ -157,6 +158,7 @@ Repeated invocations toggle between the two most recently open buffers."
   (other-window -1)
   )
 
+
 (global-set-key (kbd "C-c C-\\") 'comment-region)
 (global-set-key (kbd "C-c |") 'uncomment-region)
 (global-set-key (kbd "\C-c\C-n") 'start-nodejs-repl)
@@ -165,6 +167,7 @@ Repeated invocations toggle between the two most recently open buffers."
 (add-hook 'js2-mode-hook 'my-js2-mode-config)
 (add-hook 'css-mode-hook 'skewer-css-mode)
 (add-hook 'html-mode-hook 'skewer-html-mode)
+(add-hook 'org-mode-hook 'my-org-mode-config)
 
 ;;(global-set-key "\C-c\C-e" 'js-send-region)
 ;;(global-set-key "\C-c\C-b" 'js-send-buffer)
