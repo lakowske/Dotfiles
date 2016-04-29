@@ -70,6 +70,10 @@
 
 (setq user-email-address "lakowske@gmail.com")
 
+(git-auto-commit-mode 1)
+(setq-default gac-automatically-push-p t)
+
+
 ;; backups are not necessary, CVS gets the job done, when the file is
 ;; important, the backup file is unwanted because it poses a
 ;; security risk or just clutters up the filesystem.
@@ -194,7 +198,6 @@ Repeated invocations toggle between the two most recently open buffers."
 
 ;; Customizations for all of c-mode, c++-mode, and objc-mode
 (defun seth-c-mode-common-hook ()
-
   ;; change the nasty default offset
   (c-set-offset 'substatement-open '0)
   ;; other customizations
