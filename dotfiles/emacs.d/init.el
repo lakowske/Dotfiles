@@ -122,7 +122,9 @@
 
 (defun my-after-save ()
   (if git-auto-commit-mode
-      (message "after save")))
+      (message "after save")
+    (call-process-shell-command "git-push-and-build.sh" nil (get-buffer-create "docker-build"))
+    ))
 
 (add-hook 'after-save-hook 'my-after-save)
 
