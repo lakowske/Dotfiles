@@ -70,8 +70,6 @@
 
 (setq user-email-address "lakowske@gmail.com")
 
-(git-auto-commit-mode 1)
-(setq-default gac-automatically-push-p t)
 
 
 ;; backups are not necessary, CVS gets the job done, when the file is
@@ -117,8 +115,22 @@
 (add-hook 'sh-mode-hook (lambda () (global-linum-mode t)))
 (add-to-list 'load-path "~/emacs/minor-modes")
 
+;; Turn on git auto commit
+(require 'git-auto-commit-mode)
+(git-auto-commit-mode 1)
+(setq-default gac-automatically-push-p t)
+
+(defun my-after-save ()
+  (if git-auto-commit-mode
+      (message "after save")))
+
+(add-hook 'after-save-hook 'my-after-save)
+
 ;; HTML configuration
 (add-hook 'html-mode-hook 'auto-fill-mode)
+(add-hook 'html-mode-hook 'git-auto-commit-mode)
+
+(add-hook 'text-mode-hook 'git-auto-commit-mode)
 
 ;; Javascript configuration
 ;;(add-hook 'js2-mode-hook #'js2-refactor-mode)
@@ -127,6 +139,7 @@
   '(progn
      (require 'tern-auto-complete)
      (tern-ac-setup)))
+
 
 ;; Send region to nodejs repl
 (defun send-region-to-nodejs-repl-process (start end)
@@ -168,6 +181,7 @@ Repeated invocations toggle between the two most recently open buffers."
 (global-set-key (kbd "\C-c\C-n") 'start-nodejs-repl)
 
 (add-hook 'js2-mode-hook 'skewer-mode)
+(add-hook 'js2-mode-hook 'git-auto-commit-mode)
 (add-hook 'js2-mode-hook 'my-js2-mode-config)
 (add-hook 'css-mode-hook 'skewer-css-mode)
 (add-hook 'html-mode-hook 'skewer-html-mode)

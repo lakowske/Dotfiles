@@ -56,10 +56,13 @@ export DERBY_INSTALL=~/Tools/db-derby-10.9.1.0-bin
 export CLASSPATH=$CLASSPATH:~/Library/Java/bsh.jar:$DERBY_INSTALL/lib/derby.jar:$DERBY_INSTALL/lib/derbytools.jar:$WORKSPACE/database/drivers
 export ANT_OPTS="-Xmx512m -XX:MaxPermSize=256m"
 
+export BLOOM_DIR=/Users/home
+export JS=$BLOOM_DIR/javascript
+
 alias e="emacs -nw"
 
 #Node
-export NODE_PATH=/Users/home/:$HOME/workspace:/Users/home/javascript:/Volumes/home/javascript
+export NODE_PATH=/Users/home/:$HOME/workspace:$JS
 
 #Cuda
 export CUDA_ROOT=/usr/local/cuda
@@ -73,12 +76,18 @@ function gpersonal() {
     git config user.email lakowske@gmail.com
 }
 
+#Mac specific docker config
+function dockerEnv() {
+    eval $(docker-machine env default)
+}
+
+dockerEnv
+
 #include work configuration if it exists
 WORKBASHRC=$HOME/workScripts/workBashrc.sh
 if [ -e $WORKBASHRC ]; then
     source $WORKBASHRC
 fi
-
 
 # The next line updates PATH for the Google Cloud SDK.
 source '/Users/slakowske/Tools/google-cloud-sdk/path.bash.inc'
