@@ -128,18 +128,18 @@
     (call-process-shell-command "git-push-and-build.sh" nil (get-buffer-create "docker-build"))
     ))
 
-(defun my-build-hook ()
-  (add-hook 'after-save-hook 'my-after-save))
+;;(defun my-build-hook ()
+(add-hook 'after-save-hook 'my-after-save))
 
-(define-globalized-minor-mode my-global-auto-commit-mode git-auto-commit-mode
-  (lambda ()
-    (git-auto-commit-mode 1)
+;; (define-globalized-minor-mode my-global-auto-commit-mode git-auto-commit-mode
+;;   (lambda ()
+;;     (git-auto-commit-mode 1)
 
-    (message "hi lo")
-    (add-hook 'after-save-hook 'my-after-save)
-    ))
+;;     (message "hi lo")
+;;     (add-hook 'after-save-hook 'my-after-save)
+;;     ))
 
-(my-global-auto-commit-mode 1)
+;; (my-global-auto-commit-mode 1)
 
 ;; HTML configuration
 (add-hook 'html-mode-hook 'auto-fill-mode)
