@@ -193,7 +193,7 @@ Repeated invocations toggle between the two most recently open buffers."
 (global-set-key (kbd "\C-c\C-n") 'start-nodejs-repl)
 
 (add-hook 'js2-mode-hook 'skewer-mode)
-(add-hook 'js2-mode-hook 'git-auto-commit-mode)
+;;(add-hook 'js2-mode-hook 'git-auto-commit-mode)
 (add-hook 'js2-mode-hook 'my-js2-mode-config)
 (add-hook 'css-mode-hook 'skewer-css-mode)
 (add-hook 'html-mode-hook 'skewer-html-mode)
