@@ -133,7 +133,7 @@
   (lambda ()
     (git-auto-commit-mode 1)
     (message "hi lo")
-    (add-hook 'after-save-hook 'git-auto-commit-mode)
+    (add-hook 'after-save-hook 'my-after-save)
     ))
 
 
