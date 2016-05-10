@@ -123,6 +123,8 @@
 (defun my-after-save ()
   (if git-auto-commit-mode
       (message "after save")
+    (gac-commit)
+    (gac-push)
     (call-process-shell-command "git-push-and-build.sh" nil (get-buffer-create "docker-build"))
     ))
 
@@ -132,6 +134,7 @@
 (define-globalized-minor-mode my-global-auto-commit-mode git-auto-commit-mode
   (lambda ()
     (git-auto-commit-mode 1)
+
     (message "hi lo")
     (add-hook 'after-save-hook 'my-after-save)
     ))
