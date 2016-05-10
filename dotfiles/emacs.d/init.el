@@ -140,9 +140,9 @@
 
 ;; HTML configuration
 (add-hook 'html-mode-hook 'auto-fill-mode)
-(add-hook 'html-mode-hook 'git-auto-commit-mode)
+;;(add-hook 'html-mode-hook 'git-auto-commit-mode)
 
-(add-hook 'text-mode-hook 'git-auto-commit-mode)
+;;(add-hook 'text-mode-hook 'git-auto-commit-mode)
 
 ;; Javascript configuration
 ;;(add-hook 'js2-mode-hook #'js2-refactor-mode)
