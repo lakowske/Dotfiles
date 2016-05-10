@@ -132,6 +132,7 @@
 (define-globalized-minor-mode my-global-auto-commit-mode git-auto-commit-mode
   (lambda ()
     (git-auto-commit-mode 1)
+    (message "hi lo")
     (add-hook 'after-save-hook 'git-auto-commit-mode)
     ))
 
