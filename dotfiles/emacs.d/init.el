@@ -129,7 +129,7 @@
     ))
 
 ;;(defun my-build-hook ()
-(add-hook 'after-save-hook 'my-after-save))
+(add-hook 'after-save-hook 'my-after-save)
 
 ;; (define-globalized-minor-mode my-global-auto-commit-mode git-auto-commit-mode
 ;;   (lambda ()
