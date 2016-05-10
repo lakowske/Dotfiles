@@ -136,7 +136,6 @@
     (add-hook 'after-save-hook 'my-after-save)
     ))
 
-
 ;; HTML configuration
 (add-hook 'html-mode-hook 'auto-fill-mode)
 (add-hook 'html-mode-hook 'git-auto-commit-mode)
