@@ -123,11 +123,12 @@
 ;;(setq-default gac-automatically-push-p t)
 (git-auto-commit-mode)
 (defun my-after-save ()
-  (message "my after save")
+
   (if (and git-auto-commit-mode (not (string= "-" (projectile-project-name))))
       (progn
         (gac-commit)
         (gac-push)
+          (message "my push")
         (if (string= "flax-services" (projectile-project-name))
             (call-process-shell-command "git-push-and-build.sh" nil (get-buffer-create "docker-build")))
         )
