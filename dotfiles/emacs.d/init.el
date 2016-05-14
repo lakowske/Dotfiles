@@ -191,7 +191,7 @@ Repeated invocations toggle between the two most recently open buffers."
   )
 
 (defun my-org-mode-config ()
-  (setq org-agenda-files (list "/Volumes/home/notes/todo.org"
+  (setq org-agenda-files (list "/Users/home/notes/todo.org"
                                "~/org/home.org"))
   (local-set-key (kbd "C-c t") 'org-todo))
   
