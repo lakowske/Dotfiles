@@ -123,6 +123,7 @@
 ;;(setq-default gac-automatically-push-p t)
 
 (defun my-after-save ()
+  (message "my after save")
   (if (and git-auto-commit-mode (not (string= "-" (projectile-project-name))))
     (gac-commit)
     (gac-push)
