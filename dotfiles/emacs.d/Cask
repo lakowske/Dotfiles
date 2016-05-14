@@ -27,4 +27,5 @@
 (depends-on "ein")
 (depends-on "helm")
 (depends-on "projectile")
+(depends-on "helm-projectile")
 (depends-on "git-auto-commit-mode")
