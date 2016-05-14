@@ -128,9 +128,11 @@
         (gac-commit)
         (gac-push)
         (if (string= "flax-services" (projectile-project-name))
-            (call-process-shell-command "git-push-and-build.sh" nil (get-buffer-create "docker-build")))
-        )
-    ))
+            (progn
+              (message "building flax services")
+              (call-process-shell-command "git-push-and-build.sh" nil (get-buffer-create "docker-build")))
+          )
+    )))
 
 
 ;;(defun my-build-hook ()
