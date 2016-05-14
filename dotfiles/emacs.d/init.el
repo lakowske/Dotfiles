@@ -129,6 +129,7 @@
     (call-process-shell-command "git-push-and-build.sh" nil (get-buffer-create "docker-build"))
     ))
 
+
 ;;(defun my-build-hook ()
 (add-hook 'after-save-hook 'my-after-save)
 
