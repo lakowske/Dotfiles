@@ -130,7 +130,7 @@
         (if (string= "flax-services" (projectile-project-name))
             (progn
               (message "building flax services")
-              (call-process-shell-command "git-push-and-build.sh" nil (get-buffer-create "docker-build")))
+              (call-process-shell-command "build-flax-services.sh" nil (get-buffer-create "docker-build")))
           )
     )))
 
