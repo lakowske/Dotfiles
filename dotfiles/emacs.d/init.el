@@ -114,6 +114,7 @@
 (add-to-list 'load-path "~/emacs/minor-modes")
 
 ;; Turn on projectile
+(require 'projectile)
 (projectile-global-mode)
 
 ;; Turn on git auto commit
@@ -122,7 +123,7 @@
 (setq-default gac-automatically-push-p t)
 
 (defun my-after-save ()
-  (if git-auto-commit-mode
+  (if (and git-auto-commit-mode (not (string= "-" (projectile-project-name))))
     (gac-commit)
     (gac-push)
     (call-process-shell-command "git-push-and-build.sh" nil (get-buffer-create "docker-build"))
