@@ -122,7 +122,6 @@
 
 (defun my-after-save ()
   (if git-auto-commit-mode
-      (message "after save")
     (gac-commit)
     (gac-push)
     (call-process-shell-command "git-push-and-build.sh" nil (get-buffer-create "docker-build"))
@@ -131,21 +130,8 @@
 ;;(defun my-build-hook ()
 (add-hook 'after-save-hook 'my-after-save)
 
-;; (define-globalized-minor-mode my-global-auto-commit-mode git-auto-commit-mode
-;;   (lambda ()
-;;     (git-auto-commit-mode 1)
-
-;;     (message "hi lo")
-;;     (add-hook 'after-save-hook 'my-after-save)
-;;     ))
-
-;; (my-global-auto-commit-mode 1)
-
 ;; HTML configuration
 (add-hook 'html-mode-hook 'auto-fill-mode)
-;;(add-hook 'html-mode-hook 'git-auto-commit-mode)
-
-;;(add-hook 'text-mode-hook 'git-auto-commit-mode)
 
 ;; Javascript configuration
 ;;(add-hook 'js2-mode-hook #'js2-refactor-mode)
