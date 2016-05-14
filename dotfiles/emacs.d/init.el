@@ -123,13 +123,10 @@
 ;;(setq-default gac-automatically-push-p t)
 (git-auto-commit-mode)
 (defun my-after-save ()
-  (message "after save")
   (if (not (string= "-" (projectile-project-name)))
       (progn
-        (message "pre commit")
         (gac-commit)
         (gac-push)
-        (message "pushed")
         (if (string= "flax-services" (projectile-project-name))
             (progn
               (message "building flax services")
