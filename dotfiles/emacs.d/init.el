@@ -190,7 +190,9 @@ Repeated invocations toggle between the two most recently open buffers."
   (other-window -1)
   )
 
-
+(defun my-org-mode-config ()
+  (locale-set-key "\C-c t" 'org-todo))
+  
 (global-set-key (kbd "C-c C-\\") 'comment-region)
 (global-set-key (kbd "C-c |") 'uncomment-region)
 (global-set-key (kbd "\C-c\C-n") 'start-nodejs-repl)
