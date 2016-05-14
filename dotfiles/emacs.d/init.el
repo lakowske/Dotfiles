@@ -128,7 +128,7 @@
       (progn
         (gac-commit)
         (gac-push)
-          (message "my push")
+        (message "my push")
         (if (string= "flax-services" (projectile-project-name))
             (call-process-shell-command "git-push-and-build.sh" nil (get-buffer-create "docker-build")))
         )
