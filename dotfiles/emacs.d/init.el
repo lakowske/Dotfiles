@@ -113,6 +113,9 @@
 (add-hook 'sh-mode-hook (lambda () (global-linum-mode t)))
 (add-to-list 'load-path "~/emacs/minor-modes")
 
+;; Turn on projectile
+(projectile-global-mode)
+
 ;; Turn on git auto commit
 (require 'git-auto-commit-mode)
 (git-auto-commit-mode 1)
