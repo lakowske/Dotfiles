@@ -26,7 +26,6 @@
 
 (ido-mode t)
 (menu-bar-mode -1)
-;;(normal-erase-is-backspace-mode 1)
 (put 'downcase-region 'disabled nil)
 (put 'upcase-region 'disabled nil)
 (setq column-number-mode t)
@@ -42,7 +41,6 @@
 ;; ------------
 ;; -- Macros --
 ;; ------------
-;; (load "defuns-config.el")
 (fset 'align-equals "\C-[xalign-regex\C-m=\C-m")
 (global-set-key "\M-=" 'align-equals)
 (global-set-key "\C-x\C-m" 'execute-extended-command)
@@ -186,14 +184,10 @@ Repeated invocations toggle between the two most recently open buffers."
 (global-set-key (kbd "\C-c\C-n") 'start-nodejs-repl)
 
 (add-hook 'js2-mode-hook 'skewer-mode)
-;;(add-hook 'js2-mode-hook 'git-auto-commit-mode)
 (add-hook 'js2-mode-hook 'my-js2-mode-config)
 (add-hook 'css-mode-hook 'skewer-css-mode)
 (add-hook 'html-mode-hook 'skewer-html-mode)
 (add-hook 'org-mode-hook 'my-org-mode-config)
-
-;;(global-set-key "\C-c\C-e" 'js-send-region)
-;;(global-set-key "\C-c\C-b" 'js-send-buffer)
 
 (defun node-on-buffer ()
   "pipes the current buffer to node"
@@ -201,8 +195,6 @@ Repeated invocations toggle between the two most recently open buffers."
   (shell-command-on-region 
    (point-min) (point-max)
    (read-shell-command "Shell command on buffer: " "node")))
-
-
 
 (defun java-on-buffer ()
   "pipes the current buffer to javac, then java"
@@ -236,4 +228,3 @@ Repeated invocations toggle between the two most recently open buffers."
 
 ;; add our function as the c-mode-common-hook
 (add-hook 'c-mode-common-hook 'seth-c-mode-common-hook)
-
