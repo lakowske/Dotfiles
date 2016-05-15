@@ -127,6 +127,7 @@
       (progn
         (gac-commit)
         (gac-push)
+        (message "pushed commit")
         (if (or (string= "flax-services" (projectile-project-name)) (string= "Blog" (projectile-project-name)))
             (progn
               (message "building flax services")
