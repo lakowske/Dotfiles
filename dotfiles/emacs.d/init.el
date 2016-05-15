@@ -128,7 +128,7 @@
         (message "my after save")
         (gac-commit)
         (gac-push)
-        (if (string= "flax-services" (projectile-project-name))
+        (if (or (string= "flax-services" (projectile-project-name)) (string= "Blog" (projectile-project-name)))
             (progn
               (message "building flax services")
               (call-process-shell-command "build-flax-services.sh" nil (get-buffer-create "docker-build")))
