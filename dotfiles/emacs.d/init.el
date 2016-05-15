@@ -125,7 +125,6 @@
 (defun my-after-save ()
   (if (not (string= "-" (projectile-project-name)))
       (progn
-        (message "my after save")
         (gac-commit)
         (gac-push)
         (if (or (string= "flax-services" (projectile-project-name)) (string= "Blog" (projectile-project-name)))
