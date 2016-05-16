@@ -128,7 +128,6 @@
         (gac-commit)
         (shell-command "git push")
         ;;(gac-push)
-        (set-process-sentinel gac-process-sentinel 
         (message "pushed commit")
         (if (or (string= "flax-services" (projectile-project-name)) (string= "Blog" (projectile-project-name)))
             (progn
