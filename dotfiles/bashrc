@@ -63,7 +63,7 @@ if [ -z $INSIDE_EMACS ]; then
     export PROMPT_COMMAND="update_terminal_cwd; history -a; history -c; history -r; $PROMPT_COMMAND"
 else
     echo "inside emacs"
-    export PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
+    #export PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
 fi
 
 export PYTHONPATH=$PYTHONPATH:$HOME/RedHawk
