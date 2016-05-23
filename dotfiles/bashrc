@@ -11,7 +11,7 @@ export DYLD_LIBRARY_PATH=/Developer/NVIDIA/CUDA-7.0/lib:$DYLD_LIBRARY_PATH
 export HISTSIZE=10000
 export HISTFILESIZE=100000
 export HISTFILE=$HOME/.history/myhist
-shopt -s histappend
+
 
 #HISTFILE="${HOME}/.history/$(date -u +%Y/%m/%d.%H.%M.%S)_${HOSTNAME_SHORT}_$$"
 HOSTNAME="$(hostname)"
@@ -61,6 +61,7 @@ update_terminal_cwd() {
 if [ -z $INSIDE_EMACS ]; then
     echo "not inside emacs"
     export PROMPT_COMMAND="update_terminal_cwd; history -a; history -c; history -r; $PROMPT_COMMAND"
+    shopt -s histappend
 else
     echo "inside emacs"
     #export PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
