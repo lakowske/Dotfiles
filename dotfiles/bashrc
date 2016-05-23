@@ -65,7 +65,6 @@ else
     export PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
 fi
 
-
 export PYTHONPATH=$PYTHONPATH:$HOME/RedHawk
 
 export MAVEN3_HOME=/opt/local/share/java/maven3
