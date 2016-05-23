@@ -64,6 +64,7 @@ if [ -z $INSIDE_EMACS ]; then
 else
     echo "inside emacs"
     #export PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
+    echo "nothing for now"
 fi
 
 export PYTHONPATH=$PYTHONPATH:$HOME/RedHawk
