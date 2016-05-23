@@ -74,6 +74,8 @@ export ANT_OPTS="-Xmx512m -XX:MaxPermSize=256m"
 export BLOOM_DIR=/Users/home
 export JS=$BLOOM_DIR/javascript
 
+export K8S_VERSION=v1.2.4
+
 alias e="emacs -nw"
 
 #Node
