@@ -59,13 +59,14 @@ update_terminal_cwd() {
 }
 
 
-
+#Agressively append to and update the history.
 if [ -z $INSIDE_EMACS ]; then
+    #Not inside emacs shell
     export PROMPT_COMMAND="update_terminal_cwd; history -a; history -c; history -r; $PROMPT_COMMAND"
-
 else
     export PROMPT_COMMAND="history -a; history -c; history -r"
 fi
+
 shopt -s histappend
 
 export PYTHONPATH=$PYTHONPATH:$HOME/RedHawk
