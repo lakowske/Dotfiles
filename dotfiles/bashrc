@@ -63,9 +63,9 @@ if [ -z $INSIDE_EMACS ]; then
     export PROMPT_COMMAND="update_terminal_cwd; history -a; history -c; history -r; $PROMPT_COMMAND"
     shopt -s histappend
 else
-    echo "inside emacs"
+    echo "inside emacs $PROMPT_COMMAND"
     #export PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
-    echo "nothing for now $PROMPT_COMMAND"
+    echo "nothing for now"
 fi
 
 export PYTHONPATH=$PYTHONPATH:$HOME/RedHawk
