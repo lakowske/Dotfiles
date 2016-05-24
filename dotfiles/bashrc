@@ -59,7 +59,7 @@ update_terminal_cwd() {
 }
 
 
-#Agressively append to and update the history so history can be shared across terminal sessions.
+#Agressively append and update the history so history is shared across shell sessions.
 if [ -z $INSIDE_EMACS ]; then
     #Not inside emacs shell
     export PROMPT_COMMAND="update_terminal_cwd; history -a; history -c; history -r; $PROMPT_COMMAND"
