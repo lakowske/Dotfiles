@@ -58,13 +58,16 @@ update_terminal_cwd() {
     printf '\e]7;%s\a' "$PWD_URL"
 }
 
+
+
 if [ -z $INSIDE_EMACS ]; then
     echo "not inside emacs $PROMPT_COMMAND"
     export PROMPT_COMMAND="update_terminal_cwd; history -a; history -c; history -r; $PROMPT_COMMAND"
     shopt -s histappend
 else
     echo "inside emacs $PROMPT_COMMAND"
-    #export PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
+    export PROMPT_COMMAND=""
+    #history -a; history -c; history -r; $PROMPT_COMMAND"
     echo "nothing for now"
 fi
 
