@@ -59,7 +59,7 @@ update_terminal_cwd() {
 }
 
 if [ -z $INSIDE_EMACS ]; then
-    echo "not inside emacs"
+    echo "not inside emacs $PROMPT_COMMAND"
     export PROMPT_COMMAND="update_terminal_cwd; history -a; history -c; history -r; $PROMPT_COMMAND"
     shopt -s histappend
 else
