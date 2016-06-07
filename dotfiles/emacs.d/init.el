@@ -132,7 +132,7 @@
 ;;(setq-default gac-automatically-push-p t)
 (git-auto-commit-mode)
 (defun my-after-save ()
-  (if (not (string= "-" (projectile-project-name)))
+  (if (and (not (string= "-" (projectile-project-name))) (string-match "/Users/home" (projectile-project-root)))
       (progn
         (gac-commit)
         (shell-command "git push")
