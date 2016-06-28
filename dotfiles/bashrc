@@ -1,12 +1,16 @@
 #!/bin/bash
 
+export CORE_WORKSPACE=/Users/core
+
+source $CORE_WORKSPACE/dev-scripts/kubernetes-function.sh
 source $HOME/.color
 source $HOME/scripts/git-completion.bash
 
 export PATH=$HOME/bin:$HOME/scripts:/usr/bin:$M2:/usr/local/bin:/usr/local/mysql/bin:$PATH:/usr/sbin:/usr/afsws/bin:/usr/afsws/etc
 export PATH=/usr/local/cuda/bin:/usr/local/bin:/opt/local/bin:/opt/local/sbin:$DERBY_INSTALL/bin:$HOME/Software/shell-scripts/dvcs:$PATH
 export PATH=$HOME/.cask/bin:$PATH
-export DYLD_LIBRARY_PATH=/Developer/NVIDIA/CUDA-7.0/lib:$DYLD_LIBRARY_PATH
+export PATH=$HOME/Tools/sqlplus:$PATH
+export DYLD_LIBRARY_PATH=/Developer/NVIDIA/CUDA-7.0/lib:$HOME/Tools/sqlplus$DYLD_LIBRARY_PATH
 
 export HISTSIZE=10000
 export HISTFILESIZE=100000
