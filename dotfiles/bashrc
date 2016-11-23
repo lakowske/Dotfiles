@@ -3,6 +3,7 @@
 export CORE_WORKSPACE=/Users/core
 
 source $CORE_WORKSPACE/dev-scripts/kubernetes-function.sh
+source $CORE_WORKSPACE/dev-scripts/docker-machine.sh
 source $HOME/.color
 source $HOME/scripts/git-completion.bash
 
@@ -16,11 +17,14 @@ export HISTSIZE=10000
 export HISTFILESIZE=100000
 export HISTFILE=$HOME/.history/myhist
 
+export GOPATH=/Users/home/go/gocode
 
 #HISTFILE="${HOME}/.history/$(date -u +%Y/%m/%d.%H.%M.%S)_${HOSTNAME_SHORT}_$$"
 HOSTNAME="$(hostname)"
 HOSTNAME_SHORT="${HOSTNAME%%.*}"
 
+alias k8s-keys="docker run -i lakowske/k8s-keys"
+alias k8s-config-drive="docker run -i lakowske/k8s-config-drive"
 
 function gchk() {
     git checkout `git branch -a | sed -e 's/\(.*\/\)//g' | grep $1 | head -n 1`
@@ -44,6 +48,10 @@ function gs() {
 
 function gd() {
     git diff
+}
+
+function jshell(){
+    docker run --rm=true -it -v /Users/home/java/dacon/build/libs:/tmp/context openjdk:9 /usr/bin/jshell -classpath "/tmp/context/*"
 }
 
 export EDITOR="emacs -nw"
@@ -108,12 +116,6 @@ function gpersonal() {
     git config user.email lakowske@gmail.com
 }
 
-#Mac specific docker config
-function dockerEnv() {
-    eval $(docker-machine env default)
-}
-
-dockerEnv
 
 #include work configuration if it exists
 WORKBASHRC=$HOME/workScripts/workBashrc.sh
@@ -121,8 +123,6 @@ if [ -e $WORKBASHRC ]; then
     source $WORKBASHRC
 fi
 
-# The next line updates PATH for the Google Cloud SDK.
-source '/Users/slakowske/Tools/google-cloud-sdk/path.bash.inc'
-
-# The next line enables shell command completion for gcloud.
-source '/Users/slakowske/Tools/google-cloud-sdk/completion.bash.inc'
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+export SDKMAN_DIR="/Users/slakowske/.sdkman"
+[[ -s "/Users/slakowske/.sdkman/bin/sdkman-init.sh" ]] && source "/Users/slakowske/.sdkman/bin/sdkman-init.sh"

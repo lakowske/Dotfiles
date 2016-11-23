@@ -66,6 +66,7 @@
 (global-set-key [end] 'end-of-buffer)
 (global-set-key "\M-n" 'end-of-buffer)
 
+
 ;; ---------------------------
 ;; -- JS Mode configuration --
 ;; ---------------------------
@@ -167,7 +168,7 @@
 ;;(setq-default gac-automatically-push-p t)
 (git-auto-commit-mode)
 (defun my-after-save ()
-  (if (and (not (string= "-" (projectile-project-name))) (string-match "/Users/home" (projectile-project-root)))
+  (if (and (not (string= "-" (projectile-project-name))) (string-match "/Users/home/notes" (projectile-project-root)))
       (progn
         (gac-commit)
         (shell-command "git push")
