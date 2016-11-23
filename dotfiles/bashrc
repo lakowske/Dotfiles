@@ -73,7 +73,7 @@ export PYTHONPATH=$PYTHONPATH:$HOME/RedHawk
 
 export MAVEN3_HOME=/opt/local/share/java/maven3
 export M3=$MAVEN3_HOME/bin
-export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_66.jdk/Contents/Home
+export JAVA_HOME=/usr/lib/jvm/default-java
 export MAVEN_OPTS='-Xmx1024m'
 export DERBY_INSTALL=~/Tools/db-derby-10.9.1.0-bin
 export CLASSPATH=$CLASSPATH:~/Library/Java/bsh.jar:$DERBY_INSTALL/lib/derby.jar:$DERBY_INSTALL/lib/derbytools.jar:$WORKSPACE/database/drivers
@@ -122,3 +122,7 @@ source '/Users/slakowske/Tools/google-cloud-sdk/path.bash.inc'
 
 # The next line enables shell command completion for gcloud.
 source '/Users/slakowske/Tools/google-cloud-sdk/completion.bash.inc'
+
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+export SDKMAN_DIR="/home/seth/.sdkman"
+[[ -s "/home/seth/.sdkman/bin/sdkman-init.sh" ]] && source "/home/seth/.sdkman/bin/sdkman-init.sh"
