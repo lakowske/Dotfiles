@@ -26,6 +26,9 @@ HOSTNAME_SHORT="${HOSTNAME%%.*}"
 alias k8s-keys="docker run -i lakowske/k8s-keys"
 alias k8s-config-drive="docker run -i lakowske/k8s-config-drive"
 
+alias core="cd /Users/core/workspace"
+alias home="cd /Users/home"
+
 function gchk() {
     git checkout `git branch -a | sed -e 's/\(.*\/\)//g' | grep $1 | head -n 1`
 }
@@ -121,6 +124,11 @@ function gpersonal() {
 WORKBASHRC=$HOME/workScripts/workBashrc.sh
 if [ -e $WORKBASHRC ]; then
     source $WORKBASHRC
+fi
+
+LOCALBASHRC=$HOME/.local.sh
+if [ -e $LOCALBASHRC ]; then
+    source $LOCALBASHRC
 fi
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!

@@ -108,6 +108,7 @@
                                    (define-key haskell-cabal-mode-map (kbd "C-c C-c") 'haskell-process-cabal-build)
                                    (define-key haskell-cabal-mode-map (kbd "C-c c") 'haskell-process-cabal)))
 
+
 (custom-set-variables '(haskell-process-type 'cabal-repl))
 
 (eval-after-load 'haskell-mode
