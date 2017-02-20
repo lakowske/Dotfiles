@@ -3,6 +3,13 @@
 ;; -------------------------------
 ;; -- Ensure packages installed --
 ;; -------------------------------
+
+;; Added by Package.el.  This must come before configurations of
+;; installed packages.  Don't delete this line.  If you don't want it,
+;; just comment it out by adding a semicolon to the start of the line.
+;; You may delete these explanatory comments.
+(package-initialize)
+
 (require 'cask "~/.cask/cask.el")
 (cask-initialize)
 
@@ -92,11 +99,19 @@
 
 ;;haskell
 (custom-set-variables
- '(haskell-process-suggest-remove-import-lines t)
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(haskell-doc-chop-off-context t)
+ '(haskell-doc-show-global-types t)
+ '(haskell-doc-use-inf-haskell t)
  '(haskell-process-auto-import-loaded-modules t)
- '(haskell-process-log t))
+ '(haskell-process-log t)
+ '(haskell-process-suggest-remove-import-lines t)
+ '(haskell-process-type (quote cabal-repl)))
 (eval-after-load 'haskell-mode '(progn
-                                  (define-key haskell-mode-map (kbd "C-c C-l") 'haskell-process-load-or-reload)
+                                  (define-key haskell-mode-map (kbd "C-c C-l") 'haskell-process-load-file)
                                   (define-key haskell-mode-map (kbd "C-c C-z") 'haskell-interactive-switch)
                                   (define-key haskell-mode-map (kbd "C-c C-n C-t") 'haskell-process-do-type)
                                   (define-key haskell-mode-map (kbd "C-c C-n C-i") 'haskell-process-do-info)
@@ -109,7 +124,7 @@
                                    (define-key haskell-cabal-mode-map (kbd "C-c c") 'haskell-process-cabal)))
 
 
-(custom-set-variables '(haskell-process-type 'cabal-repl))
+
 
 (eval-after-load 'haskell-mode
   '(define-key haskell-mode-map (kbd "C-c C-o") 'haskell-compile))
@@ -289,3 +304,9 @@ Repeated invocations toggle between the two most recently open buffers."
 (add-hook 'c-mode-common-hook 'seth-c-mode-common-hook)
 
 (setq magit-last-seen-setup-instructions "1.4.0")
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )

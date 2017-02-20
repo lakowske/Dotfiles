@@ -1,3 +1,4 @@
+dotfiles/bash_profile bash_profile
 dotfiles/bashrc .bashrc
 dotfiles/color .color
 dotfiles/ssh/config .ssh/config
