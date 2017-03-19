@@ -2,8 +2,12 @@
 
 export CORE_WORKSPACE=/Users/core
 
-source $CORE_WORKSPACE/dev-scripts/kubernetes-function.sh
-source $CORE_WORKSPACE/dev-scripts/docker-machine.sh
+if [ -e $CORE_WORKSPACE ]; then
+    source $WORKBASHRC
+    source $CORE_WORKSPACE/dev-scripts/kubernetes-function.sh
+    source $CORE_WORKSPACE/dev-scripts/docker-machine.sh
+fi
+
 source $HOME/.color
 source $HOME/scripts/git-completion.bash
 
