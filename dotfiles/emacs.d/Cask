@@ -31,4 +31,4 @@
 (depends-on "git-auto-commit-mode")
 (depends-on "flx-ido")
 (depends-on "groovy-mode")
-
+(depends-on "pcap-mode")

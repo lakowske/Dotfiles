@@ -8,6 +8,27 @@ if [ -e $CORE_WORKSPACE ]; then
     source $CORE_WORKSPACE/dev-scripts/docker-machine.sh
 fi
 
+if [[ "$OSTYPE" == "linux-gnu" ]]; then
+    export JAVA_HOME=/usr/lib/jvm/default-java
+elif [[ "$OSTYPE" == "darwin" ]]; then
+    export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_112.jdk/Contents/Home
+    # Some shortcuts
+    alias core="cd /Users/core/workspace"
+    alias home="cd /Users/home"
+    #Node
+    export NODE_PATH=/Users/home/:$HOME/workspace:$JS
+
+    #Cuda
+    export CUDA_ROOT=/usr/local/cuda
+    
+fi
+
+export EDITOR="emacs -nw"
+export PAGER=less
+export CVS_RSH=ssh
+export PS1="\t/\u/\H\w> "
+
+
 source $HOME/.color
 source $HOME/scripts/git-completion.bash
 
@@ -15,20 +36,73 @@ export PATH=$HOME/bin:$HOME/scripts:/usr/bin:$M2:/usr/local/bin:/usr/local/mysql
 export PATH=/usr/local/cuda/bin:/usr/local/bin:/opt/local/bin:/opt/local/sbin:$DERBY_INSTALL/bin:$HOME/Software/shell-scripts/dvcs:$PATH
 export PATH=$HOME/.cask/bin:$PATH
 export PATH=$HOME/Tools/sqlplus:$PATH
+export PATH=$HOME/Library/Haskell/bin:$PATH
 export DYLD_LIBRARY_PATH=/Developer/NVIDIA/CUDA-7.0/lib:$HOME/Tools/sqlplus$DYLD_LIBRARY_PATH
 
 export HISTSIZE=10000
 export HISTFILESIZE=100000
 export HISTFILE=$HOME/.history/myhist
 
-export GOPATH=/Users/home/go/gocode
+export MAVEN3_HOME=/opt/local/share/java/maven3
+export M3=$MAVEN3_HOME/bin
 
-#HISTFILE="${HOME}/.history/$(date -u +%Y/%m/%d.%H.%M.%S)_${HOSTNAME_SHORT}_$$"
+export GOPATH=/Users/home/go/gocode
+export GOOS="darwin"
+export GOARCH="amd64"
+
+
 HOSTNAME="$(hostname)"
 HOSTNAME_SHORT="${HOSTNAME%%.*}"
 
-alias k8s-keys="docker run -i lakowske/k8s-keys"
-alias k8s-config-drive="docker run -i lakowske/k8s-config-drive"
+
+ssh-add -K 2>/dev/null;
+
+
+#For macs sake
+update_terminal_cwd() {
+    # Identify the directory using a "file:" scheme URL,
+    # including the host name to disambiguate local vs.
+    # remote connections. Percent-escape spaces.
+    local SEARCH=' '
+    local REPLACE='%20'
+    local PWD_URL="file://$HOSTNAME${PWD//$SEARCH/$REPLACE}"
+    printf '\e]7;%s\a' "$PWD_URL"
+}
+
+
+#Agressively append and update the history so history is shared across shell sessions.
+if [ -z $INSIDE_EMACS ]; then
+    #Not inside emacs shell
+    export PROMPT_COMMAND="update_terminal_cwd; history -a; history -c; history -r; $PROMPT_COMMAND"
+else
+    export PROMPT_COMMAND="history -a; history -c; history -r"
+fi
+
+shopt -s histappend
+
+
+
+
+
+function gpersonal() {
+    #Git
+    git config user.name "Seth Lakowske"
+    git config user.email lakowske@gmail.com
+}
+
+
+#include work configuration if it exists
+WORKBASHRC=$HOME/workScripts/workBashrc.sh
+if [ -e $WORKBASHRC ]; then
+    source $WORKBASHRC
+fi
+
+
+LOCALBASHRC=$HOME/.local.sh
+if [ -e $LOCALBASHRC ]; then
+    source $LOCALBASHRC
+fi
+
 
 function gchk() {
     git checkout `git branch -a | sed -e 's/\(.*\/\)//g' | grep $1 | head -n 1`
@@ -57,75 +131,6 @@ function gd() {
 function jshell(){
     docker run --rm=true -it -v /Users/home/java/dacon/build/libs:/tmp/context openjdk:9 /usr/bin/jshell -classpath "/tmp/context/*"
 }
-
-export EDITOR="emacs -nw"
-export PAGER=less
-export CVS_RSH=ssh
-export PS1="\t/\u/\H\w> "
-
-#For macs sake
-update_terminal_cwd() {
-    # Identify the directory using a "file:" scheme URL,
-    # including the host name to disambiguate local vs.
-    # remote connections. Percent-escape spaces.
-    local SEARCH=' '
-    local REPLACE='%20'
-    local PWD_URL="file://$HOSTNAME${PWD//$SEARCH/$REPLACE}"
-    printf '\e]7;%s\a' "$PWD_URL"
-}
-
-
-#Agressively append and update the history so history is shared across shell sessions.
-if [ -z $INSIDE_EMACS ]; then
-    #Not inside emacs shell
-    export PROMPT_COMMAND="update_terminal_cwd; history -a; history -c; history -r; $PROMPT_COMMAND"
-else
-    export PROMPT_COMMAND="history -a; history -c; history -r"
-fi
-
-shopt -s histappend
-
-export PYTHONPATH=$PYTHONPATH:$HOME/RedHawk
-
-export MAVEN3_HOME=/opt/local/share/java/maven3
-export M3=$MAVEN3_HOME/bin
-export JAVA_HOME=/usr/lib/jvm/default-java
-export MAVEN_OPTS='-Xmx1024m'
-export DERBY_INSTALL=~/Tools/db-derby-10.9.1.0-bin
-export CLASSPATH=$CLASSPATH:~/Library/Java/bsh.jar:$DERBY_INSTALL/lib/derby.jar:$DERBY_INSTALL/lib/derbytools.jar:$WORKSPACE/database/drivers
-export ANT_OPTS="-Xmx512m -XX:MaxPermSize=256m"
-
-export BLOOM_DIR=/Users/home
-export JS=$BLOOM_DIR/javascript
-
-export K8S_VERSION="v1.2.4"
-export GOOS="darwin"
-export GOARCH="amd64"
-export K8S_BINARY="kubectl"
-
-alias e="emacs -nw"
-
-#Node
-export NODE_PATH=/Users/home/:$HOME/workspace:$JS
-
-#Cuda
-export CUDA_ROOT=/usr/local/cuda
-
-alias e="emacs -nw"
-alias ec="emacsclient -t"
-
-function gpersonal() {
-    #Git
-    git config user.name "Seth Lakowske"
-    git config user.email lakowske@gmail.com
-}
-
-
-#include work configuration if it exists
-WORKBASHRC=$HOME/workScripts/workBashrc.sh
-if [ -e $WORKBASHRC ]; then
-    source $WORKBASHRC
-fi
 
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
