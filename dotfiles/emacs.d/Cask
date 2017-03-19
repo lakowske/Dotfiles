@@ -32,3 +32,5 @@
 (depends-on "flx-ido")
 (depends-on "groovy-mode")
 (depends-on "pcap-mode")
+(depends-on "shakespeare-mode")
+
