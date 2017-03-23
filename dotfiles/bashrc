@@ -14,7 +14,7 @@ fi
 
 if [[ "$OSTYPE" == "linux-gnu" ]]; then
     export JAVA_HOME=/usr/lib/jvm/default-java
-elif [[ "$OSTYPE" == "darwin" ]]; then
+elif [[ "$OSTYPE" == darwin* ]]; then
     export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_112.jdk/Contents/Home
     # Some shortcuts
     alias core="cd /Users/core/workspace"
