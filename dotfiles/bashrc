@@ -26,7 +26,7 @@ elif [[ "$OSTYPE" == darwin* ]]; then
     export CUDA_ROOT=/usr/local/cuda
 
     #Haskell stack
-    #export $HOME/.local/bin
+    export PATH=$HOME/.local/bin:$PATH
 fi
 
 export EDITOR="emacs -nw"
