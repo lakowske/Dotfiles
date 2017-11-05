@@ -27,6 +27,10 @@ elif [[ "$OSTYPE" == darwin* ]]; then
 
     #Haskell stack
     export PATH=$HOME/.local/bin:$PATH
+
+    #Kubernetes completion
+    source <(kubectl completion bash)
+    
 fi
 
 export EDITOR="emacs -nw"
@@ -45,8 +49,8 @@ export PATH=$HOME/Tools/sqlplus:$PATH
 export PATH=$HOME/Library/Haskell/bin:$PATH
 export DYLD_LIBRARY_PATH=/Developer/NVIDIA/CUDA-7.0/lib:$HOME/Tools/sqlplus$DYLD_LIBRARY_PATH
 
-export HISTSIZE=10000
-export HISTFILESIZE=100000
+export HISTSIZE=
+export HISTFILESIZE=
 export HISTFILE=$HOME/.history/myhist
 
 export MAVEN3_HOME=/opt/local/share/java/maven3

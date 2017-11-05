@@ -88,6 +88,7 @@
 (defun copy-from-osx ()
   (shell-command-to-string "pbpaste"))
 
+
 (defun paste-to-osx (text &optional push)
   (let ((process-connection-type nil))
     (let ((proc (start-process "pbcopy" "*Messages*" "pbcopy")))
@@ -96,6 +97,12 @@
 
 (setq interprogram-cut-function 'paste-to-osx)
 (setq interprogram-paste-function 'copy-from-osx)
+
+
+(defun uuid ()
+  (interactive)
+  (insert (shell-command-to-string "uuid"))
+  )
 
 ;;haskell
 (custom-set-variables
@@ -109,7 +116,14 @@
  '(haskell-process-auto-import-loaded-modules t)
  '(haskell-process-log t)
  '(haskell-process-suggest-remove-import-lines t)
- '(haskell-process-type (quote cabal-repl)))
+ '(haskell-process-type (quote cabal-repl))
+ '(package-selected-packages
+   (quote
+    (ghc flymake-go go-playground go-mode yaml-mode tern-auto-complete smooth-scrolling shakespeare-mode python-mode pcap-mode nodejs-repl magit js2-refactor intero helm-projectile groovy-mode git-auto-commit-mode flx-ido ess elm-mode ein csv-mode cider better-defaults)))
+ '(safe-local-variable-values
+   (quote
+    ((haskell-process-use-ghci . t)
+     (haskell-indent-spaces . 4)))))
 (eval-after-load 'haskell-mode '(progn
                                   (define-key haskell-mode-map (kbd "C-c C-l") 'haskell-process-load-file)
                                   (define-key haskell-mode-map (kbd "C-c C-z") 'haskell-interactive-switch)
@@ -130,6 +144,8 @@
   '(define-key haskell-mode-map (kbd "C-c C-o") 'haskell-compile))
 (eval-after-load 'haskell-cabal
   '(define-key haskell-cabal-mode-map (kbd "C-c C-o") 'haskell-compile))
+
+;; (add-hook 'haskell-mode-hook 'intero-mode)
 
 ;; backups are not necessary, CVS gets the job done, when the file is
 ;; important, the backup file is unwanted because it poses a
@@ -202,6 +218,9 @@
 
 ;; HTML configuration
 (add-hook 'html-mode-hook 'auto-fill-mode)
+
+;; Yaml configuration
+(add-hook 'yaml-mode-hook (lambda () (auto-fill-mode -1)))
 
 ;; Javascript configuration
 ;;(add-hook 'js2-mode-hook #'js2-refactor-mode)
