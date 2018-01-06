@@ -35,7 +35,7 @@ elif [[ "$OSTYPE" == darwin* ]]; then
     #source <(kubectl completion bash)
 fi
 
-export EDITOR="emacs"
+export EDITOR="emacs -nw"
 export PAGER=less
 export CVS_RSH=ssh
 

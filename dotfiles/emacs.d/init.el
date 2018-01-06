@@ -12,9 +12,9 @@
 ;; installed packages.  Don't delete this line.  If you don't want it,
 ;; just comment it out by adding a semicolon to the start of the line.
 ;; You may delete these explanatory comments.
-(package-initialize)
+;; (package-initialize)
 
-(require 'cask "~/.cask/cask.el")
+(require 'cask "/usr/local/share/emacs/site-lisp/cask/cask.el")
 (cask-initialize)
 
 ;; ---------------------
@@ -29,7 +29,6 @@
 (require 'ansi-color)
 (require 'recentf)
 (require 'linum)
-;; (require 'smooth-scrolling)
 (require 'whitespace)
 (require 'company)
 
