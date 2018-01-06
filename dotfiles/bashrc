@@ -28,15 +28,16 @@ elif [[ "$OSTYPE" == darwin* ]]; then
     #Haskell stack
     export PATH=$HOME/.local/bin:$PATH
 
-    #Kubernetes completion
-    source <(kubectl completion bash)
-    
+    #gcloud
+    export PATH=$HOME/Tools/google-cloud-sdk/bin:$PATH
+
+    #Kubernetes completion - failing ATM
+    #source <(kubectl completion bash)
 fi
 
-export EDITOR="emacs -nw"
+export EDITOR="emacs"
 export PAGER=less
 export CVS_RSH=ssh
-
 
 
 source $HOME/.color

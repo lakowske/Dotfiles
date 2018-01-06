@@ -4,6 +4,10 @@
 ;; -- Ensure packages installed --
 ;; -------------------------------
 
+;; Use tcp so we can run multiple daemons and swap between them with
+;; the --server-file option at the CLI
+(setq server-use-tcp t)
+
 ;; Added by Package.el.  This must come before configurations of
 ;; installed packages.  Don't delete this line.  If you don't want it,
 ;; just comment it out by adding a semicolon to the start of the line.
@@ -25,13 +29,10 @@
 (require 'ansi-color)
 (require 'recentf)
 (require 'linum)
-(require 'smooth-scrolling)
+;; (require 'smooth-scrolling)
 (require 'whitespace)
+(require 'company)
 
-
-
-
-;;(ido-mode t)
 
 (require 'flx-ido)
 (ido-mode 1)
@@ -54,6 +55,7 @@
 
 (setq uniquify-buffer-name-style 'reverse)
 
+
 ;; ------------
 ;; -- Macros --
 ;; ------------
@@ -65,6 +67,10 @@
 (global-set-key "\C-x\C-i" 'indent-region)
 (global-set-key (kbd "C-x /") 'comment-or-uncomment-region)
 (global-set-key "\C-c\C-f" 'find-grep)
+
+;; magit is great!
+(global-set-key (kbd "C-x g") 'magit-status)
+
 
 ;; setup home and end to work correctly
 (global-set-key [home] 'beginning-of-buffer)
@@ -98,13 +104,81 @@
 (setq interprogram-cut-function 'paste-to-osx)
 (setq interprogram-paste-function 'copy-from-osx)
 
-
+;; uuid insertion into current buffer
 (defun uuid ()
   (interactive)
   (insert (shell-command-to-string "uuid"))
   )
 
+(defun date ()
+  (interactive)
+  (insert (shell-command-to-string "date \"+%Y-%m-%d\""))
+  )
+
+(defun open-ansi-shell ()
+  (interactive)
+  (ansi-term "/usr/local/bin/bash"))
+
+(add-hook 'shell-mode-hook 'ansi-color-for-comint-mode-on)
+(add-to-list 'comint-output-filter-functions 'ansi-color-process-output)
+
+(global-set-key (kbd "C-c s") 'open-ansi-shell)
+
+;; company mode
+(add-to-list 'company-backends 'company-ghc)
+(add-hook 'after-init-hook 'global-company-mode)
+
+(custom-set-faces
+ '(company-preview
+   ((t (:foreground "darkgray" :underline t))))
+ '(company-preview-common
+   ((t (:inherit company-preview))))
+ '(company-tooltip
+   ((t (:background "lightgray" :foreground "black"))))
+ '(company-tooltip-selection
+   ((t (:background "steelblue" :foreground "white"))))
+ '(company-tooltip-common
+   ((((type x)) (:inherit company-tooltip :weight bold))
+    (t (:inherit company-tooltip))))
+ '(company-tooltip-common-selection
+   ((((type x)) (:inherit company-tooltip-selection :weight bold))
+    (t (:inherit company-tooltip-selection)))))
+
+
+;;elm
+(require 'elm-mode)
+
+;; purescript
+(require 'flycheck)
+(require 'purescript-mode)
+(require 'psc-ide)
+
+(add-hook 'purescript-mode-hook
+  (lambda ()
+    (psc-ide-mode)
+    (company-mode)
+    (flycheck-mode)
+    (turn-on-purescript-indentation)))
+
+(setq psc-ide-use-npm-bin t)
+
 ;;haskell
+
+;; (add-hook 'haskell-mode-hook 'intero-mode)
+(autoload 'ghc-init "ghc" nil t)
+(autoload 'ghc-debug "ghc" nil t)
+(add-hook 'haskell-mode-hook (lambda () (ghc-init)))
+
+
+(defun haskell-mode-setup ()
+  (setq haskell-process-type 'stack-ghci)
+  (setq haskell-process-log t)
+  )
+
+(add-hook 'haskell-mode-hook 'interactive-haskell-mode)
+(add-hook 'haskell-mode-hook 'haskell-mode-setup)
+(custom-set-variables '(haskell-tags-on-save t))
+
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -116,6 +190,8 @@
  '(haskell-process-auto-import-loaded-modules t)
  '(haskell-process-log t)
  '(haskell-process-suggest-remove-import-lines t)
+ '(haskell-process-suggest-hoogle-imports t)
+ '(haskell-process-auto-import-loaded-modules t)
  '(haskell-process-type (quote cabal-repl))
  '(package-selected-packages
    (quote
@@ -142,10 +218,13 @@
 
 (eval-after-load 'haskell-mode
   '(define-key haskell-mode-map (kbd "C-c C-o") 'haskell-compile))
+(eval-after-load 'haskell-mode
+  '(define-key haskell-mode-map (kbd "C-c C-y") 'ghc-show-type))
+
 (eval-after-load 'haskell-cabal
   '(define-key haskell-cabal-mode-map (kbd "C-c C-o") 'haskell-compile))
 
-;; (add-hook 'haskell-mode-hook 'intero-mode)
+(setq ghc-report-errors nil)
 
 ;; backups are not necessary, CVS gets the job done, when the file is
 ;; important, the backup file is unwanted because it poses a
@@ -162,6 +241,9 @@
 ;; Get rid of the GUI-type stuff
 ;;(scroll-bar-mode -1)
 (menu-bar-mode -1)
+
+;; Turn off tabs for indent
+(setq-default indent-tabs-mode nil)
 
 ;; Turn on snippets
 (require 'yasnippet)
