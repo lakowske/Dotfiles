@@ -1,3 +1,6 @@
+(global-set-key (kbd "ESC <down>") 'shrink-window)
+(global-set-key (kbd "ESC <up>") 'enlarge-window)
+
 (setq column-number-mode t)
 (setq inhibit-startup-message t)
 (setq save-abbrevs nil)

@@ -48,6 +48,7 @@ export PATH=/usr/local/cuda/bin:/usr/local/bin:/opt/local/bin:/opt/local/sbin:$D
 export PATH=$HOME/.cask/bin:$PATH
 export PATH=$HOME/Tools/sqlplus:$PATH
 export PATH=$HOME/Library/Haskell/bin:$PATH
+export PATH=$HOME/.local/bin:$PATH
 export DYLD_LIBRARY_PATH=/Developer/NVIDIA/CUDA-7.0/lib:$HOME/Tools/sqlplus$DYLD_LIBRARY_PATH
 
 export HISTSIZE=
@@ -67,7 +68,8 @@ HOSTNAME_SHORT="${HOSTNAME%%.*}"
 
 
 ssh-add -K 2>/dev/null;
-
+#Turn on flow control so forward history search works
+stty -ixon
 
 #For macs sake
 update_terminal_cwd() {
@@ -134,3 +136,5 @@ export PS1="\t/\u/\H\w> "
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="/home/seth/.sdkman"
 [[ -s "/home/seth/.sdkman/bin/sdkman-init.sh" ]] && source "/home/seth/.sdkman/bin/sdkman-init.sh"
+
+complete -C /Users/core/workspace/vault/vault vault

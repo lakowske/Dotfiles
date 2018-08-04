@@ -1,5 +1,9 @@
 ;; haskell
 
+(let ((my-cabal-path (expand-file-name "~/.cabal/bin")))
+  (setenv "PATH" (concat my-cabal-path ":" (getenv "PATH")))
+  (add-to-list 'exec-path my-cabal-path))
+
 ;; (add-hook 'haskell-mode-hook 'intero-mode)
 (autoload 'ghc-init "ghc" nil t)
 (autoload 'ghc-debug "ghc" nil t)
@@ -61,4 +65,3 @@
   '(define-key haskell-cabal-mode-map (kbd "C-c C-o") 'haskell-compile))
 
 (setq ghc-report-errors nil)
-
