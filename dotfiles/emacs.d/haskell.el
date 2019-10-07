@@ -5,13 +5,13 @@
   (add-to-list 'exec-path my-cabal-path))
 
 ;; (add-hook 'haskell-mode-hook 'intero-mode)
-(autoload 'ghc-init "ghc" nil t)
-(autoload 'ghc-debug "ghc" nil t)
-(add-hook 'haskell-mode-hook (lambda () (ghc-init)))
+;; (autoload 'ghc-init "ghc" nil t)
+;; (autoload 'ghc-debug "ghc" nil t)
+;; (add-hook 'haskell-mode-hook (lambda () (ghc-init)))
 
 
 (defun haskell-mode-setup ()
-  ;; (setq haskell-process-type 'stack-ghci)
+  (setq haskell-process-type 'stack-ghci)
   (setq haskell-process-log t)
   )
 
