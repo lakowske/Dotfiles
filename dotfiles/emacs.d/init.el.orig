@@ -1,0 +1,134 @@
+;; -*- mode: emacs-lisp -*-
+;; Simple .emacs configuration
+;; -------------------------------
+;; -- Ensure packages installed --
+;; -------------------------------
+
+
+;; ---------------------
+;; -- Global Settings --
+;; ---------------------
+
+(require 'package)
+(require 'cl)
+(require 'ido)
+(require 'ffap)
+(require 'uniquify)
+(require 'ansi-color)
+(require 'recentf)
+(require 'linum)
+(require 'whitespace)
+(require 'company)
+
+;;(add-hook 'shell-mode-hook 'ansi-color-for-comint-mode-on)
+;;(add-to-list 'comint-output-filter-functions 'ansi-color-process-output)
+
+;; company mode
+(add-to-list 'company-backends 'company-ghc)
+(add-hook 'after-init-hook 'global-company-mode)
+
+(custom-set-faces
+ '(company-preview
+   ((t (:foreground "darkgray" :underline t))))
+ '(company-preview-common
+   ((t (:inherit company-preview))))
+ '(company-tooltip
+   ((t (:background "lightgray" :foreground "black"))))
+ '(company-tooltip-selection
+   ((t (:background "steelblue" :foreground "white"))))
+ '(company-tooltip-common
+   ((((type x)) (:inherit company-tooltip :weight bold))
+    (t (:inherit company-tooltip))))
+ '(company-tooltip-common-selection
+   ((((type x)) (:inherit company-tooltip-selection :weight bold))
+    (t (:inherit company-tooltip-selection)))))
+
+
+;;elm
+(require 'elm-mode)
+
+;; purescript
+(require 'flycheck)
+(require 'purescript-mode)
+(require 'psc-ide)
+
+(add-hook 'purescript-mode-hook
+  (lambda ()
+    (psc-ide-mode)
+    (company-mode)
+    (flycheck-mode)
+    (turn-on-purescript-indentation)))
+
+(setq psc-ide-use-npm-bin t)
+
+
+;; Turn on snippets
+(require 'yasnippet)
+(setq yas-snippet-dirs '("~/.emacs.d/snippets"))
+(yas-global-mode t)
+(setq yas-indent-line 'fixed)
+(define-key yas-minor-mode-map (kbd "<tab>") nil)
+(define-key yas-minor-mode-map (kbd "TAB") nil)
+(define-key yas-minor-mode-map (kbd "<backtab>") 'yas-expand)
+(define-key yas-minor-mode-map (kbd "\C-c TAB") 'yas-expand)
+
+(require 'auto-complete-config)
+(add-to-list 'ac-dictionary-directories "~/.emacs.d/ac-dict")
+(ac-config-default)
+(global-auto-complete-mode t)
+(ac-set-trigger-key "TAB")
+(ac-set-trigger-key "<tab>")
+
+;; Whitespace configuration
+(require 'whitespace)
+(global-set-key "\C-c_w" 'whitespace-mode)
+(setq whitespace-style '(face empty tabs lines-tail trailing))
+(setq whitespace-line-column 120)
+
+(add-hook 'sh-mode-hook 'whitespace-mode)
+(add-hook 'sh-mode-hook (lambda () (global-linum-mode t)))
+(add-to-list 'load-path "~/emacs/minor-modes")
+
+;; Turn on projectile
+(require 'projectile)
+(projectile-global-mode)
+
+;; Turn on git auto commit
+(require 'git-auto-commit-mode)
+
+(eval-after-load 'tern
+  '(progn
+     (require 'tern-auto-complete)
+     (tern-ac-setup)))
+
+(defun switch-to-previous-buffer ()
+    "Switch to previously open buffer.
+Repeated invocations toggle between the two most recently open buffers."
+    (interactive)
+    (switch-to-buffer (other-buffer (current-buffer) 1)))
+
+(defun my-org-mode-config ()
+  (setq org-agenda-files (list "/Users/home/notes/todo.org"
+                               "~/org/home.org"))
+  (local-set-key (kbd "C-c t") 'org-todo)
+  (local-set-key (kbd "C-c a") 'org-agenda)
+  )
+  
+(global-set-key (kbd "C-c C-\\") 'comment-region)
+(global-set-key (kbd "C-c |") 'uncomment-region)
+(global-set-key (kbd "\C-c\C-n") 'start-nodejs-repl)
+
+(add-hook 'css-mode-hook 'skewer-css-mode)
+(add-hook 'html-mode-hook 'skewer-html-mode)
+(add-hook 'org-mode-hook 'my-org-mode-config)
+
+;; Text mode configuration
+(add-hook 'text-mode-hook 'auto-fill-mode)
+
+(setq magit-last-seen-setup-instructions "1.4.0")
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
