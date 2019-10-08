@@ -1,16 +1,10 @@
 #!/bin/bash
 
-export CORE_WORKSPACE=/Users/core
-
 LOCALBASHRC=$HOME/.local.sh
 if [ -e $LOCALBASHRC ]; then
     source $LOCALBASHRC
 fi
 
-if [ -e $CORE_WORKSPACE ]; then
-    source $CORE_WORKSPACE/dev-scripts/kubernetes-function.sh
-    source $CORE_WORKSPACE/dev-scripts/docker-machine.sh
-fi
 
 if [[ "$OSTYPE" == "linux-gnu" ]]; then
     export JAVA_HOME=/usr/lib/jvm/default-java
