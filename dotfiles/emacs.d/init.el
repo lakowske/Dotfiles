@@ -3,13 +3,14 @@
 ;; installed packages.  Don't delete this line.  If you don't want it,
 ;; just comment it out by adding a semicolon to the start of the line.
 ;; You may delete these explanatory comments.
-(package-initialize)
+;;(package-initialize)
+(setq warning-suppress-log-types '((package reinitialization)))
 
 ;; Use tcp so we can run multiple daemons and swap between them with
 ;; the --server-file option at the CLI
 (setq server-use-tcp t)
 
-(require 'cask "/usr/local/share/emacs/site-lisp/cask/cask.el")
+(require 'cask "~/.cask/cask.el")
 (cask-initialize)
 
 (load "~/.emacs.d/config.el")
