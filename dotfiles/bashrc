@@ -47,7 +47,14 @@ export DYLD_LIBRARY_PATH=/Developer/NVIDIA/CUDA-7.0/lib:$HOME/Tools/sqlplus$DYLD
 
 export HISTSIZE=
 export HISTFILESIZE=
-export HISTFILE=$HOME/.history/myhist
+export HISTFILEDIR=$HOME/.history
+export HISTFILEPATH=$HISTFILEDIR/myhist
+if [ ! -f "$HISTFILEDIR" ]; then
+    mkdir -p $HISTFILEDIR
+    touch $HISTFILEPATH
+fi
+
+export HISTFILE=$HISTFILEPATH
 
 export MAVEN3_HOME=/opt/local/share/java/maven3
 export M3=$MAVEN3_HOME/bin
