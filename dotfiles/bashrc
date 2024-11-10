@@ -10,37 +10,14 @@ if [[ "$OSTYPE" == "linux-gnu" ]]; then
     export JAVA_HOME=/usr/lib/jvm/default-java
 elif [[ "$OSTYPE" == darwin* ]]; then
     export JAVA_HOME=/Library/Java/JavaVirtualMachines/openjdk.jdk/Contents/Home
-    # Some shortcuts
-    alias core="cd /Users/core/workspace"
-    alias home="cd /Users/home"
-    #Node
-    export NODE_PATH=/Users/home/:$HOME/workspace:$JS
-
-    #Cuda
-    export CUDA_ROOT=/usr/local/cuda
-
-    #Haskell stack
-    export PATH=$HOME/.local/bin:$PATH
-
-    #gcloud
-    export PATH=$HOME/Tools/google-cloud-sdk/bin:$PATH
-
-    #Kubernetes completion - failing ATM
-    #source <(kubectl completion bash)
 fi
 
 export EDITOR="emacs -nw"
 export PAGER=less
-export CVS_RSH=ssh
-
 
 source $HOME/.color
-source $HOME/scripts/git-completion.bash
 
-export PATH=$HOME/bin:$HOME/scripts:/usr/bin:$M2:/usr/local/bin:$PATH:/usr/sbin
-export PATH=/usr/local/bin:/opt/local/bin:/opt/local/sbin:$PATH
-export PATH=$HOME/.cask/bin:$PATH
-export PATH=$HOME/.local/bin:$PATH
+export PATH=$HOME/bin:$HOME/scripts
 
 export HISTSIZE=
 export HISTFILESIZE=
@@ -53,18 +30,8 @@ fi
 
 export HISTFILE=$HISTFILEPATH
 
-export MAVEN3_HOME=/opt/local/share/java/maven3
-export M3=$MAVEN3_HOME/bin
-
-export GOPATH=/Users/home/go/gocode
-export GOOS="darwin"
-export GOARCH="amd64"
-
-
 HOSTNAME="$(hostname)"
 HOSTNAME_SHORT="${HOSTNAME%%.*}"
-
-
 
 #Turn on flow control so forward history search works
 stty -ixon
@@ -79,7 +46,6 @@ update_terminal_cwd() {
     local PWD_URL="file://$HOSTNAME${PWD//$SEARCH/$REPLACE}"
     printf '\e]7;%s\a' "$PWD_URL"
 }
-
 
 #Agressively append and update the history so history is shared across shell sessions.
 if [ -z $INSIDE_EMACS ]; then
@@ -97,6 +63,5 @@ function gpersonal() {
     git config user.name "Seth Lakowske"
     git config user.email lakowske@gmail.com
 }
-
 
 export PS1="\t/\u/\H\w> "
