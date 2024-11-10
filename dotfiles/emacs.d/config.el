@@ -22,10 +22,10 @@
 (setq ido-enable-flex-matching t)
 (setq ido-use-faces nil)
 
-(require 'flx-ido)
-(ido-mode 1)
-(ido-everywhere 1)
-(flx-ido-mode 1)
+;; (require 'flx-ido)
+;; (ido-mode 1)
+;; (ido-everywhere 1)
+;; (flx-ido-mode 1)
 
 ;; turn column-number-mode on
 (column-number-mode nil)
