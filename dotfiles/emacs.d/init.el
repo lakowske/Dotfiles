@@ -13,9 +13,9 @@
 (require 'cask "~/.cask/cask.el")
 (cask-initialize)
 
-(load "~/.emacs.d/config.el")
-(load "~/.emacs.d/key-bindings-custom-funcs.el")
-(load "~/.emacs.d/init.el.orig")
+;;(load "~/.emacs.d/config.el")
+;;(load "~/.emacs.d/key-bindings-custom-funcs.el")
+;;(load "~/.emacs.d/init.el.orig")
 ;;(load "~/.emacs.d/c-java.el")
 ;;(load "~/.emacs.d/javascript.el")
-(load "~/.emacs.d/haskell.el")
+;;(load "~/.emacs.d/haskell.el")

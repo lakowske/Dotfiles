@@ -17,7 +17,7 @@ export PAGER=less
 
 source $HOME/.color
 
-export PATH=$HOME/bin:$HOME/scripts
+export PATH=$HOME/bin:$HOME/scripts:$PATH
 
 export HISTSIZE=
 export HISTFILESIZE=

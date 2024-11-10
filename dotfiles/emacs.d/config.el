@@ -43,4 +43,4 @@
 
 (add-to-list 'auto-mode-alist '("Jenkinsfile" . groovy-mode))
 
-(git-auto-commit-mode)
+;; (git-auto-commit-mode)
