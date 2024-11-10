@@ -9,7 +9,7 @@ fi
 if [[ "$OSTYPE" == "linux-gnu" ]]; then
     export JAVA_HOME=/usr/lib/jvm/default-java
 elif [[ "$OSTYPE" == darwin* ]]; then
-    export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_112.jdk/Contents/Home
+    export JAVA_HOME=/Library/Java/JavaVirtualMachines/openjdk.jdk/Contents/Home
     # Some shortcuts
     alias core="cd /Users/core/workspace"
     alias home="cd /Users/home"
@@ -149,3 +149,8 @@ function minikube_reset_vbox_dhcp_leases() {
     rm  ~/Library/VirtualBox/HostInterfaceNetworking-vboxnet0-Dhcpd.leases
   fi
 }
+
+
+# Load Angular CLI autocompletion.
+source <(ng completion script)
+eval "$(gh copilot alias -- bash)"
